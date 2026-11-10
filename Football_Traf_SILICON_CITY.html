@@ -1,0 +1,2954 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARENA 360 — Your Game. Your Arena. | Premium Football Turf Booking</title>
+  <meta name="description" content="ARENA 360 — Dhaka's premium football turf. Book 5v5, 7v7 and 8v8 floodlit turfs online, check live slot availability, and join tournaments." />
+  <meta name="theme-color" content="#080B10" />
+  <!-- Link preview (WhatsApp / Messenger / Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ARENA 360 — Your Game. Your Arena." />
+  <meta property="og:description" content="Premium football turf booking in Dhaka. Live slot availability, instant booking, tournaments." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&h=630&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect x='2' y='2' width='44' height='44' rx='13' fill='%23101722' stroke='%23B7FF3C' stroke-width='2.2'/%3E%3Cpolygon points='24,13 31,18 28.5,26.5 19.5,26.5 17,18' fill='%23B7FF3C'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts: Inter, Manrope & Hind Siliguri (for Bangla) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN for responsive layout utilities alongside custom CSS3 Glassmorphism -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & 2026–2027 APPLE-INSPIRED GLASSMORPHISM SYSTEM
+       ========================================================================== */
+    :root {
+      --bg-primary: #080B10;
+      --bg-secondary: #101722;
+      --accent-lime: #B7FF3C;
+      --accent-green: #43F58C;
+      --text-primary: #FFFFFF;
+      --text-secondary: #A8B0BC;
+      --glass-surface: rgba(255, 255, 255, 0.06);
+      --glass-surface-hover: rgba(255, 255, 255, 0.10);
+      --glass-border: rgba(255, 255, 255, 0.14);
+      --glass-border-highlight: rgba(183, 255, 60, 0.45);
+      --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.65);
+      --shadow-lime: 0 0 28px rgba(183, 255, 60, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Manrope', 'Hind Siliguri', sans-serif;
+    }
+
+    /* Ambient Stadium Glow & Subtle Pitch Grid */
+    .ambient-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -10;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(183, 255, 60, 0.11) 0%, transparent 40%),
+        radial-gradient(circle at 85% 22%, rgba(67, 245, 140, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 50% 75%, rgba(16, 23, 34, 0.9) 0%, #080B10 70%);
+    }
+
+    .pitch-grid-lines {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image:
+        linear-gradient(to right, #ffffff 1px, transparent 1px),
+        linear-gradient(to bottom, #ffffff 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Core Glassmorphism Surfaces */
+    .glass-nav {
+      background: rgba(8, 11, 16, 0.84);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-nav.scrolled {
+      background: rgba(8, 11, 16, 0.94);
+      border-bottom-color: rgba(183, 255, 60, 0.22);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.78);
+    }
+
+    /* Optimized Single-Row 64px Header Layout */
+    .arena-header-inner {
+      max-width: 1360px;
+      height: 64px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .arena-header-inner * {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 639px) {
+      .arena-header-inner { padding: 0 16px; gap: 8px; }
+    }
+
+    /* Keep section headings visible below the fixed 64px header on anchor jumps */
+    section[id], #faq {
+      scroll-margin-top: 80px;
+    }
+
+    .arena-nav-link {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 12px;
+      border-radius: 9999px;
+      color: var(--text-secondary);
+      transition: all 0.22s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .arena-nav-link:hover,
+    .arena-nav-link.active {
+      color: var(--accent-lime);
+      background: rgba(183, 255, 60, 0.1);
+      text-shadow: 0 0 12px rgba(183, 255, 60, 0.35);
+    }
+
+    /* Footer Vector Social Icon Buttons (40x40 Frosted Glass + Neon Lime Glow) */
+    .social-glass-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .social-glass-icon:hover {
+      transform: translateY(-3px) scale(1.05);
+      background: rgba(183, 255, 60, 0.14);
+      border-color: var(--accent-lime);
+      color: var(--accent-lime);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 20px rgba(183, 255, 60, 0.4);
+    }
+
+    .social-glass-pill {
+      padding: 8px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .social-glass-pill:hover {
+      transform: translateY(-2px);
+      background: rgba(183, 255, 60, 0.12);
+      border-color: var(--accent-lime);
+      color: #FFFFFF;
+      box-shadow: 0 0 20px rgba(183, 255, 60, 0.28);
+    }
+
+    .social-glass-pill:hover svg {
+      color: var(--accent-lime);
+    }
+
+    .glass-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-glass);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card-interactive:hover {
+      transform: translateY(-5px);
+      background: var(--glass-surface-hover);
+      border-color: var(--glass-border-highlight);
+      box-shadow: 0 28px 65px rgba(0, 0, 0, 0.75), 0 0 25px rgba(183, 255, 60, 0.14);
+    }
+
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Neon Lime & Electric Green Buttons */
+    .btn-neon {
+      background: linear-gradient(135deg, var(--accent-lime) 0%, var(--accent-green) 100%);
+      color: #06090E;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: var(--shadow-lime);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-neon:hover {
+      transform: translateY(-2px) scale(1.01);
+      filter: brightness(1.08);
+      box-shadow: 0 0 36px rgba(183, 255, 60, 0.55);
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(16px);
+      transition: all 0.25s ease;
+    }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: var(--accent-lime);
+      color: var(--accent-lime);
+    }
+
+    /* Text Gradient Utility */
+    .text-gradient-lime {
+      background: linear-gradient(95deg, #FFFFFF 0%, #B7FF3C 52%, #43F58C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Hero Stadium Background */
+    .hero-stadium-bg {
+      background-image:
+        linear-gradient(180deg, rgba(8, 11, 16, 0.68) 0%, rgba(8, 11, 16, 0.82) 55%, #080B10 100%),
+        radial-gradient(circle at 50% 35%, rgba(183, 255, 60, 0.18) 0%, transparent 60%),
+        url('https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=1920&q=85');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Custom Form Inputs */
+    .arena-input {
+      background: rgba(16, 23, 34, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .arena-input:focus {
+      outline: none;
+      border-color: var(--accent-lime);
+      box-shadow: 0 0 0 3px rgba(183, 255, 60, 0.18);
+    }
+
+    /* Scroll Indicator Mouse Animation */
+    @keyframes scrollWheel {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(10px); opacity: 0; }
+    }
+
+    .scroll-wheel-dot {
+      animation: scrollWheel 1.8s infinite ease-out;
+    }
+
+    /* AI Typing Dots Animation */
+    @keyframes bounceDot {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .typing-dot:nth-child(1) { animation: bounceDot 1.2s infinite 0s; }
+    .typing-dot:nth-child(2) { animation: bounceDot 1.2s infinite 0.2s; }
+    .typing-dot:nth-child(3) { animation: bounceDot 1.2s infinite 0.4s; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080B10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 999px;
+      border: 1px solid rgba(183, 255, 60, 0.25);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    /* Respect Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="selection:bg-[#B7FF3C] selection:text-[#080B10]">
+  <!-- Ambient Background Canvas -->
+  <div class="ambient-canvas" aria-hidden="true">
+    <div class="pitch-grid-lines"></div>
+  </div>
+
+  <!-- ==========================================================================
+       REUSABLE VECTOR SVG DEFS (ARENA 360 FUTURISTIC CREST)
+       ========================================================================== -->
+  <svg width="0" height="0" class="hidden" aria-hidden="true">
+    <defs>
+      <g id="arena360-logo-mark">
+        <rect x="2" y="2" width="44" height="44" rx="13" fill="#101722" stroke="#B7FF3C" stroke-width="2.2" />
+        <circle cx="24" cy="24" r="14" fill="none" stroke="#43F58C" stroke-width="1.6" stroke-dasharray="5 3" />
+        <polygon points="24,13 31,18 28.5,26.5 19.5,26.5 17,18" fill="#B7FF3C" />
+        <circle cx="24" cy="24" r="3" fill="#080B10" />
+        <path d="M24 10 L24 13 M37 19 L31 18 M33 34 L28.5 26.5 M15 34 L19.5 26.5 M11 19 L17 18" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+      </g>
+    </defs>
+  </svg>
+
+  <!-- ==========================================================================
+       3. STICKY GLASSMORPHISM HEADER & NAVIGATION
+       ========================================================================== -->
+  <header id="mainHeader" class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="arena-header-inner">
+      <!-- Left: Compact ARENA 360 Brand Cluster -->
+      <a href="#home" class="flex items-center gap-2.5 group shrink-0">
+        <svg viewBox="0 0 48 48" class="w-9 h-9 transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(183,255,60,0.4)]">
+          <use href="#arena360-logo-mark"></use>
+        </svg>
+        <div class="flex flex-col justify-center">
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="font-display font-extrabold text-base sm:text-[17px] tracking-tight text-white">ARENA <span class="text-[#B7FF3C]">360</span></span>
+            <span class="hidden 2xl:inline-block px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider rounded-full bg-[#B7FF3C]/15 text-[#B7FF3C] border border-[#B7FF3C]/40">PRO</span>
+          </div>
+          <p class="hidden sm:block text-[10px] text-[#A8B0BC] font-medium leading-tight mt-0.5" data-i18n="brandTagline">Your Game. Your Arena.</p>
+        </div>
+      </a>
+
+      <!-- Center: Single-Line Frosted Glass Navigation Pill -->
+      <nav class="hidden xl:flex items-center gap-0.5 px-2 py-1 rounded-full bg-white/[0.04] border border-white/10 shrink-0" aria-label="Primary Navigation">
+        <a href="#home" class="arena-nav-link active" data-i18n="navHome">Home</a>
+        <a href="#our-turf" class="arena-nav-link" data-i18n="navTurf">Our Turf</a>
+        <a href="#pricing" class="arena-nav-link" data-i18n="navPricing">Pricing</a>
+        <a href="#booking-calendar" class="arena-nav-link" data-i18n="navBookSlot">Book a Slot</a>
+        <a href="#gallery" class="arena-nav-link" data-i18n="navGallery">Gallery</a>
+        <a href="#tournaments" class="arena-nav-link" data-i18n="navTournaments">Tournaments</a>
+        <a href="#about" class="arena-nav-link" data-i18n="navAbout">About Us</a>
+        <a href="#contact" class="arena-nav-link" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <!-- Right: Compact Single-Row Action Cluster -->
+      <div class="flex items-center gap-2 shrink-0">
+        <!-- a) Sleek EN | বাংলা Toggle Pill -->
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold glass-pill hover:border-[#B7FF3C] text-white inline-flex items-center gap-1 cursor-pointer transition-all" title="Switch between English and Bangla">
+          <span id="langEnPill" class="px-1.5 py-0.5 rounded bg-[#B7FF3C] text-[#080B10] font-extrabold">EN</span>
+          <span class="text-[#A8B0BC]">|</span>
+          <span id="langBnPill" class="px-1.5 py-0.5 rounded text-[#A8B0BC]">বাংলা</span>
+        </button>
+
+        <!-- b) Compact Dashboard / Login Glass Button -->
+        <button onclick="openAuthOrDashboardModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-[12px] font-bold btn-glass cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-[#B7FF3C]" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          <span data-i18n="navLogin">My Dashboard</span>
+          <span id="headerBookingCount" class="px-1.5 py-0.5 rounded-full bg-[#B7FF3C]/20 text-[#B7FF3C] text-[10px] font-extrabold">2</span>
+        </button>
+
+        <!-- c) Prominent Neon Lime Book Now CTA Button -->
+        <a href="#quick-booking" class="btn-neon px-4 py-2 rounded-xl text-[13px] font-bold hidden sm:inline-flex items-center gap-1.5 shrink-0">
+          <span data-i18n="navBookNow">Book Now</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+
+        <!-- d) Responsive Animated Mobile Hamburger Button -->
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-xl glass-pill text-white hover:text-[#B7FF3C] transition-colors" aria-label="Toggle Menu">
+          <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Responsive Mobile Navigation Drawer -->
+    <div id="mobileMenuDrawer" class="hidden xl:hidden border-t border-white/10 bg-[#080B10]/95 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-2">
+      <div class="grid grid-cols-2 gap-2">
+        <a href="#home" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 text-xs font-bold text-white hover:text-[#B7FF3C]" data-i18n="navHome">Home</a>
+        <a href="#our-turf" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 text-xs font-bold text-white hover:text-[#B7FF3C]" data-i18n="navTurf">Our Turf</a>
+        <a href="#pricing" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 text-xs font-bold text-white hover:text-[#B7FF3C]" data-i18n="navPricing">Pricing</a>
+        <a href="#booking-calendar" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 text-xs font-bold text-white hover:text-[#B7FF3C]" data-i18n="navBookSlot">Book a Slot</a>
+        <a href="#gallery" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 text-xs font-bold text-white hover:text-[#B7FF3C]" data-i18n="navGallery">Gallery</a>
+        <a href="#tournaments" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 text-xs font-bold text-white hover:text-[#B7FF3C]" data-i18n="navTournaments">Tournaments</a>
+        <a href="#about" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 text-xs font-bold text-white hover:text-[#B7FF3C]" data-i18n="navAbout">About Us</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/5 text-xs font-bold text-white hover:text-[#B7FF3C]" data-i18n="navContact">Contact</a>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="toggleMobileMenu(); openAuthOrDashboardModal();" class="w-full py-3 rounded-xl btn-glass text-xs font-extrabold flex items-center justify-center gap-2">
+          <span data-i18n="navLogin">My Dashboard</span>
+        </button>
+        <a href="#quick-booking" onclick="toggleMobileMenu()" class="w-full py-3 rounded-xl btn-neon text-xs font-extrabold flex items-center justify-center gap-2">
+          <span data-i18n="navBookNow">Book Now</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       4. IMMERSIVE FULL-SCREEN HERO SECTION
+       ========================================================================== -->
+  <section id="home" class="hero-stadium-bg relative min-h-screen pt-28 pb-16 flex flex-col justify-between overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <!-- Left 7 Columns: Badge, Headline, Copy, CTAs & Floating Stats -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B7FF3C]/15 border border-[#B7FF3C]/45 text-xs font-extrabold tracking-wider text-[#B7FF3C] uppercase">
+              <span class="w-2 h-2 rounded-full bg-[#B7FF3C] animate-ping"></span>
+              <span data-i18n="heroBadge">PREMIUM FOOTBALL TURF EXPERIENCE</span>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-pill text-xs font-semibold text-[#43F58C]">
+              <span class="w-2 h-2 rounded-full bg-[#43F58C]"></span>
+              <span data-i18n="heroLiveBadge">Live Availability: 6 Slots Open Tonight</span>
+            </div>
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.06] text-white">
+            <span data-i18n="heroTitleLine1">Your Game.</span><br />
+            <span class="text-gradient-lime" data-i18n="heroTitleLine2">Your Arena.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-[#A8B0BC] max-w-2xl leading-relaxed" data-i18n="heroSubtitle">
+            Book your favorite football turf in seconds. Play with your team, organize tournaments, and experience football like never before.
+          </p>
+
+          <!-- Primary Hero CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#quick-booking" class="btn-neon px-7 py-4 rounded-2xl text-sm sm:text-base inline-flex items-center gap-2.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
+              <span data-i18n="heroCtaPrimary">Book Your Turf</span>
+            </a>
+            <a href="#our-turf" class="btn-glass px-7 py-4 rounded-2xl text-sm sm:text-base font-bold inline-flex items-center gap-2">
+              <span data-i18n="heroCtaSecondary">Explore Our Arena</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- 4 Floating Glassmorphism Statistics Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-4">
+            <div class="glass-card rounded-2xl p-4 border-l-2 border-l-[#B7FF3C]">
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-white">500+</div>
+              <div class="text-xs text-[#A8B0BC] mt-1 font-medium" data-i18n="statPlayers">Happy Players</div>
+            </div>
+            <div class="glass-card rounded-2xl p-4 border-l-2 border-l-[#43F58C]">
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-white">1,200+</div>
+              <div class="text-xs text-[#A8B0BC] mt-1 font-medium" data-i18n="statBookings">Successful Bookings</div>
+            </div>
+            <div class="glass-card rounded-2xl p-4 border-l-2 border-l-[#B7FF3C]">
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-white">50+</div>
+              <div class="text-xs text-[#A8B0BC] mt-1 font-medium" data-i18n="statTournaments">Tournaments</div>
+            </div>
+            <div class="glass-card rounded-2xl p-4 border-l-2 border-l-[#43F58C]">
+              <div class="font-display text-2xl sm:text-3xl font-extrabold text-[#B7FF3C]">4.9/5</div>
+              <div class="text-xs text-[#A8B0BC] mt-1 font-medium" data-i18n="statRating">Customer Rating</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 5 Columns: Floating Glassmorphism Live Turf Telemetry & Instant Preview Card -->
+        <div class="lg:col-span-5">
+          <div class="glass-card rounded-3xl p-6 sm:p-7 relative overflow-hidden border border-white/20">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3 h-3 rounded-full bg-[#B7FF3C] animate-pulse"></span>
+                <span class="text-xs font-extrabold uppercase tracking-wider text-white" data-i18n="heroCardTitle">ARENA 360 LIVE TELEMETRY</span>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-[#43F58C]/20 border border-[#43F58C]/40 text-[11px] font-extrabold text-[#43F58C]">FIFA PRO TURF</span>
+            </div>
+
+            <!-- Stadium Night Preview Image with Overlay -->
+            <div class="relative h-52 rounded-2xl overflow-hidden mb-5 border border-white/15 group">
+              <img
+                src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=900&q=80"
+                alt="Arena 360 Floodlit Football Turf"
+                onerror="this.src='https://placehold.co/800x450/101722/B7FF3C?text=ARENA+360+TURF'"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#080B10] via-transparent to-transparent"></div>
+              <div class="absolute bottom-3 left-3.5 right-3.5 flex items-end justify-between">
+                <div>
+                  <span class="px-2 py-0.5 rounded bg-[#B7FF3C] text-[#080B10] text-[10px] font-black uppercase">Prime Floodlit</span>
+                  <h3 class="text-base font-extrabold text-white mt-1" data-i18n="heroCardTurfName">Arena 360 Main Turf (7v7)</h3>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-[#A8B0BC]" data-i18n="lblStartingAt">Starting at</div>
+                  <div class="text-lg font-extrabold text-[#B7FF3C]">৳2,500<span class="text-xs text-white font-normal">/hr</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Next 3 Prime Evening Slots Quick-Select -->
+            <div class="space-y-2.5 mb-5">
+              <div class="flex items-center justify-between text-xs text-[#A8B0BC]">
+                <span class="font-bold text-white" data-i18n="heroCardSub">Tonight's Prime Slots (Click to Pre-Fill):</span>
+                <span class="text-[#43F58C] font-semibold">● Instant Lock</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" onclick="quickSelectHeroSlot('06:00 PM – 07:00 PM')" class="p-2.5 rounded-xl bg-white/5 hover:bg-[#B7FF3C]/20 border border-white/10 hover:border-[#B7FF3C] text-left transition-all cursor-pointer">
+                  <div class="text-[10px] text-[#43F58C] font-bold">AVAILABLE</div>
+                  <div class="text-xs font-extrabold text-white mt-0.5">06:00 PM</div>
+                  <div class="text-[10px] text-[#A8B0BC]">৳2,500/hr</div>
+                </button>
+                <button type="button" onclick="quickSelectHeroSlot('07:00 PM – 08:00 PM')" class="p-2.5 rounded-xl bg-[#B7FF3C]/15 border border-[#B7FF3C] text-left transition-all cursor-pointer">
+                  <div class="text-[10px] text-[#B7FF3C] font-extrabold">POPULAR</div>
+                  <div class="text-xs font-extrabold text-white mt-0.5">07:00 PM</div>
+                  <div class="text-[10px] text-white/80">৳2,500/hr</div>
+                </button>
+                <button type="button" onclick="quickSelectHeroSlot('08:00 PM – 09:00 PM')" class="p-2.5 rounded-xl bg-white/5 hover:bg-[#B7FF3C]/20 border border-white/10 hover:border-[#B7FF3C] text-left transition-all cursor-pointer">
+                  <div class="text-[10px] text-[#43F58C] font-bold">AVAILABLE</div>
+                  <div class="text-xs font-extrabold text-white mt-0.5">08:00 PM</div>
+                  <div class="text-[10px] text-[#A8B0BC]">৳2,500/hr</div>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-3 border-t border-white/10">
+              <div class="text-xs text-[#A8B0BC]">
+                <span class="text-white font-bold">100% Shock-Absorbing</span> • Shadowless LED
+              </div>
+              <a href="#quick-booking" class="text-xs font-extrabold text-[#B7FF3C] hover:underline flex items-center gap-1">
+                <span data-i18n="heroCardAction">Configure Booking</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Scroll Indicator -->
+    <div class="flex flex-col items-center justify-center mt-8">
+      <a href="#quick-booking" class="flex flex-col items-center gap-2 text-xs text-[#A8B0BC] hover:text-[#B7FF3C] transition-colors">
+        <div class="w-6 h-10 rounded-full border-2 border-white/25 flex justify-center pt-1.5">
+          <span class="w-1.5 h-2 rounded-full bg-[#B7FF3C] scroll-wheel-dot"></span>
+        </div>
+        <span class="text-[11px] font-semibold tracking-widest uppercase" data-i18n="scrollExplore">Scroll to Book</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. QUICK BOOKING WIDGET (ADVANCED GLASSMORPHISM CONSOLE)
+       ========================================================================== -->
+  <section id="quick-booking" class="relative z-20 -mt-10 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 border border-[#B7FF3C]/35 shadow-[0_25px_70px_rgba(0,0,0,0.8)]">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-[#B7FF3C]/15 border border-[#B7FF3C]/40 flex items-center justify-center text-[#B7FF3C]">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-lg sm:text-xl font-extrabold text-white" data-i18n="qbTitle">Instant Turf Booking Console</h2>
+            <p class="text-xs text-[#A8B0BC]" data-i18n="qbSubtitle">Select your preferred turf, date, slot, and duration for real-time fare calculation</p>
+          </div>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-[#43F58C]/15 border border-[#43F58C]/40 text-xs font-bold text-[#43F58C]" data-i18n="qbInstantBadge">● Instant Confirmation Demo</span>
+      </div>
+
+      <!-- 7 Interactive Booking Fields -->
+      <form id="quickBookingForm" onsubmit="handleQuickBookSubmit(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4 items-end">
+        <!-- 1. Select Turf -->
+        <div class="lg:col-span-1">
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblSelectTurf">1. Select Turf</label>
+          <select id="qbTurf" onchange="updateQuickBookingPrice()" class="arena-input w-full px-3 py-3 rounded-xl text-xs sm:text-sm font-bold">
+            <option value="main">Arena 360 Main Turf (7v7)</option>
+            <option value="mini">Arena 360 Mini Turf (5v5)</option>
+            <option value="pro">Arena 360 Pro Turf (8v8)</option>
+          </select>
+        </div>
+
+        <!-- 2. Select Date -->
+        <div class="lg:col-span-1">
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblSelectDate">2. Select Date</label>
+          <input id="qbDate" type="date" onchange="updateQuickBookingPrice()" class="arena-input w-full px-3 py-3 rounded-xl text-xs sm:text-sm font-bold" />
+        </div>
+
+        <!-- 3. Select Time Slot -->
+        <div class="lg:col-span-1">
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblSelectSlot">3. Time Slot</label>
+          <select id="qbSlot" onchange="updateQuickBookingPrice()" class="arena-input w-full px-3 py-3 rounded-xl text-xs sm:text-sm font-bold">
+            <option value="06:00 AM – 07:00 AM">06:00 AM – 07:00 AM</option>
+            <option value="07:00 AM – 08:00 AM">07:00 AM – 08:00 AM</option>
+            <option value="08:00 AM – 09:00 AM">08:00 AM – 09:00 AM</option>
+            <option value="09:00 AM – 10:00 AM">09:00 AM – 10:00 AM</option>
+            <option value="10:00 AM – 11:00 AM">10:00 AM – 11:00 AM</option>
+            <option value="03:00 PM – 04:00 PM">03:00 PM – 04:00 PM</option>
+            <option value="04:00 PM – 05:00 PM">04:00 PM – 05:00 PM</option>
+            <option value="05:00 PM – 06:00 PM">05:00 PM – 06:00 PM</option>
+            <option value="06:00 PM – 07:00 PM" selected>06:00 PM – 07:00 PM</option>
+            <option value="07:00 PM – 08:00 PM">07:00 PM – 08:00 PM</option>
+            <option value="08:00 PM – 09:00 PM">08:00 PM – 09:00 PM</option>
+            <option value="09:00 PM – 10:00 PM">09:00 PM – 10:00 PM</option>
+          </select>
+        </div>
+
+        <!-- 4. Duration -->
+        <div class="lg:col-span-1">
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblDuration">4. Duration</label>
+          <select id="qbDuration" onchange="updateQuickBookingPrice()" class="arena-input w-full px-3 py-3 rounded-xl text-xs sm:text-sm font-bold">
+            <option value="1">1 Hour</option>
+            <option value="1.5">1.5 Hours</option>
+            <option value="2">2 Hours</option>
+            <option value="3">3 Hours</option>
+          </select>
+        </div>
+
+        <!-- 5. Number of Players -->
+        <div class="lg:col-span-1">
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblPlayers">5. Players</label>
+          <select id="qbPlayers" class="arena-input w-full px-3 py-3 rounded-xl text-xs sm:text-sm font-bold">
+            <option value="10 Players (5v5)">10 Players (5v5)</option>
+            <option value="14 Players (7v7)" selected>14 Players (7v7)</option>
+            <option value="16 Players (8v8)">16 Players (8v8)</option>
+            <option value="22+ Squad / Event">22+ Squad / Event</option>
+          </select>
+        </div>
+
+        <!-- 6. Dynamic Price Display -->
+        <div class="lg:col-span-1">
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblTotalPrice">6. Total Price</label>
+          <div class="h-[46px] px-3.5 rounded-xl bg-[#B7FF3C]/10 border border-[#B7FF3C]/40 flex items-center justify-between">
+            <span id="qbPriceDisplay" class="font-display text-lg font-extrabold text-[#B7FF3C]">৳2,500</span>
+            <span class="text-[10px] font-bold text-[#43F58C] uppercase">BDT</span>
+          </div>
+        </div>
+
+        <!-- 7. Book Now Button -->
+        <div class="lg:col-span-1">
+          <button type="submit" class="btn-neon w-full h-[46px] rounded-xl text-xs sm:text-sm font-extrabold flex items-center justify-center gap-1.5 cursor-pointer">
+            <span data-i18n="btnBookNow">Book Now</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. OUR TURF SECTION (3 PREMIUM TURF CARDS + 8 AMENITIES)
+       ========================================================================== -->
+  <section id="our-turf" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+      <div>
+        <span class="inline-block px-3.5 py-1 rounded-full bg-[#B7FF3C]/15 border border-[#B7FF3C]/40 text-xs font-extrabold uppercase tracking-wider text-[#B7FF3C] mb-3" data-i18n="turfSectionBadge">FIFA-GRADE SURFACES</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white" data-i18n="turfSectionTitle">Choose Your Championship Pitch</h2>
+      </div>
+      <p class="text-sm text-[#A8B0BC] max-w-md" data-i18n="turfSectionSub">
+        Three purpose-engineered synthetic grass arenas with high-lumen shadowless LED floodlights and pro locker rooms.
+      </p>
+    </div>
+
+    <!-- 3 Turf Cards Grid (Rendered Dynamically for Language Support) -->
+    <div id="turfCardsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-7 mb-12"></div>
+
+    <!-- 8 Included Facility Amenities Bar -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8">
+      <div class="text-xs font-extrabold uppercase tracking-wider text-[#B7FF3C] mb-4" data-i18n="amenitiesTitle">ALL BOOKINGS INCLUDE 8 PREMIUM ARENA AMENITIES</div>
+      <div id="amenitiesGrid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3"></div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. PRICING SECTION & PRICING FAQ STRIP
+       ========================================================================== -->
+  <section id="pricing" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-block px-3.5 py-1 rounded-full bg-[#43F58C]/15 border border-[#43F58C]/40 text-xs font-extrabold uppercase tracking-wider text-[#43F58C] mb-3" data-i18n="pricingBadge">TRANSPARENT HOURLY RATES</span>
+      <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white" data-i18n="pricingHeading">Flexible Session Pricing</h2>
+      <p class="text-sm text-[#A8B0BC] mt-2" data-i18n="pricingSub">
+        Zero hidden charges. Every session includes floodlights, match balls, bibs, changing rooms, and filtered drinking water.
+      </p>
+    </div>
+
+    <div id="pricingCardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10"></div>
+
+    <!-- Compact Pricing FAQ Strip -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h4 class="text-sm font-extrabold text-[#B7FF3C] mb-1" data-i18n="pFaq1Q">Are floodlights &amp; footballs included?</h4>
+        <p class="text-xs text-[#A8B0BC] leading-relaxed" data-i18n="pFaq1A">Yes! Evening and night bookings include full stadium LED illumination, 2 FIFA-grade match balls, and team bibs at zero extra cost.</p>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-[#B7FF3C] mb-1" data-i18n="pFaq2Q">Do clubs get multi-hour discounts?</h4>
+        <p class="text-xs text-[#A8B0BC] leading-relaxed" data-i18n="pFaq2A">Book 3+ consecutive hours or monthly recurring club slots to enjoy an automatic 10% loyalty rebate at our operations desk.</p>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-[#B7FF3C] mb-1" data-i18n="pFaq3Q">What payment methods are accepted?</h4>
+        <p class="text-xs text-[#A8B0BC] leading-relaxed" data-i18n="pFaq3A">We accept bKash, Nagad, Rocket, Visa/Mastercard, corporate bank transfer, and cash at the ARENA 360 desk.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. BOOKING CALENDAR & LIVE AVAILABILITY SECTION
+       ========================================================================== -->
+  <section id="booking-calendar" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-block px-3.5 py-1 rounded-full bg-[#43F58C]/15 border border-[#43F58C]/40 text-xs font-extrabold uppercase tracking-wider text-[#43F58C] mb-3" data-i18n="calBadge">INTERACTIVE SCHEDULE MATRIX</span>
+      <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white" data-i18n="calTitle">Booking Calendar &amp; Live Availability</h2>
+      <p class="text-sm text-[#A8B0BC] mt-2" data-i18n="calSubtitle">
+        Pick any date on the monthly calendar to inspect real-time slot availability, filter by status, and lock your match time.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+      <!-- Left 5 Columns: Monthly Calendar UI -->
+      <div class="lg:col-span-5 glass-card rounded-3xl p-6">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#B7FF3C]" data-i18n="calMonthLabel">SELECT MATCH DATE</span>
+            <h3 id="calendarMonthTitle" class="font-display text-xl font-extrabold text-white">November 2026</h3>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="changeCalendarMonth(-1)" class="p-2 rounded-xl btn-glass cursor-pointer" aria-label="Previous Month">←</button>
+            <button type="button" onclick="changeCalendarMonth(1)" class="p-2 rounded-xl btn-glass cursor-pointer" aria-label="Next Month">→</button>
+          </div>
+        </div>
+
+        <!-- Weekday Headers -->
+        <div class="grid grid-cols-7 gap-1.5 text-center text-[11px] font-bold text-[#A8B0BC] mb-2">
+          <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+        </div>
+
+        <!-- Days Grid -->
+        <div id="calendarDaysGrid" class="grid grid-cols-7 gap-1.5"></div>
+
+        <!-- Visual Status Legend -->
+        <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-[#43F58C]"></span>
+            <span class="text-[#A8B0BC]" data-i18n="legendAvailable">Available</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+            <span class="text-[#A8B0BC]" data-i18n="legendLimited">Limited</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <span class="text-[#A8B0BC]" data-i18n="legendBooked">Booked</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 7 Columns: Selected Date Time Slots & Instant Checkout Bar -->
+      <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-7">
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-5 mb-5 border-b border-white/10">
+          <div>
+            <span class="text-xs font-bold text-[#43F58C]" id="calSelectedDateBanner">Selected Date: Today</span>
+            <h3 class="font-display text-xl font-extrabold text-white mt-0.5" data-i18n="calSlotHeading">Available &amp; Booked Time Slots</h3>
+          </div>
+
+          <!-- Turf & Duration Selector inside Calendar -->
+          <div class="flex flex-wrap items-center gap-2">
+            <select id="calTurfSelect" onchange="handleCalendarTurfChange(this.value)" class="arena-input px-3 py-2 rounded-xl text-xs font-bold">
+              <option value="main">Main Turf (৳2,500/hr)</option>
+              <option value="mini">Mini Turf (৳1,800/hr)</option>
+              <option value="pro">Pro Turf (৳3,000/hr)</option>
+            </select>
+            <select id="calDurationSelect" onchange="handleCalendarDurationChange(this.value)" class="arena-input px-3 py-2 rounded-xl text-xs font-bold">
+              <option value="1">1 Hr</option>
+              <option value="1.5">1.5 Hrs</option>
+              <option value="2">2 Hrs</option>
+              <option value="3">3 Hrs</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Interactive 9 Time Slots Grid -->
+        <div id="calendarSlotsGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6"></div>
+
+        <!-- Bottom Summary & Lock Slot Button -->
+        <div class="p-4 rounded-2xl bg-[#101722]/90 border border-white/15 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="text-xs text-[#A8B0BC]" id="calSummaryLine">Main Turf • 06:00 PM – 07:00 PM (1 Hr)</div>
+            <div class="font-display text-2xl font-extrabold text-[#B7FF3C]" id="calTotalPrice">৳2,500</div>
+          </div>
+          <button type="button" onclick="openBookingModalFromCalendar()" class="btn-neon px-6 py-3.5 rounded-xl text-xs sm:text-sm font-extrabold cursor-pointer">
+            <span data-i18n="btnLockSelectedSlot">Confirm Selected Slot →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. GALLERY SECTION (MASONRY-INSPIRED GRID + LIGHTBOX)
+       ========================================================================== -->
+  <section id="gallery" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      <div>
+        <span class="inline-block px-3.5 py-1 rounded-full bg-[#B7FF3C]/15 border border-[#B7FF3C]/40 text-xs font-extrabold uppercase tracking-wider text-[#B7FF3C] mb-3" data-i18n="galBadge">INSIDE ARENA 360</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white" data-i18n="galHeading">Immersive Arena Gallery</h2>
+      </div>
+      <div id="galleryFilterBar" class="flex flex-wrap items-center gap-2"></div>
+    </div>
+
+    <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </section>
+
+  <!-- ==========================================================================
+       8. TOURNAMENT MANAGEMENT SECTION
+       ========================================================================== -->
+  <section id="tournaments" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+      <div>
+        <span class="inline-block px-3.5 py-1 rounded-full bg-[#B7FF3C]/15 border border-[#B7FF3C]/40 text-xs font-extrabold uppercase tracking-wider text-[#B7FF3C] mb-3" data-i18n="tournBadge">CHAMPIONSHIP LEAGUES</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white" data-i18n="tournHeading">Make Every Match Count.</h2>
+      </div>
+      <p class="text-sm text-[#A8B0BC] max-w-md" data-i18n="tournSub">
+        Compete in official ARENA 360 floodlit tournaments with certified referees, live digital stats, HD stream highlights, and cash prize pools.
+      </p>
+    </div>
+
+    <div id="tournamentCardsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-7"></div>
+  </section>
+
+  <!-- ==========================================================================
+       13. TESTIMONIAL SECTION
+       ========================================================================== -->
+  <section id="reviews" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-block px-3.5 py-1 rounded-full bg-[#B7FF3C]/15 border border-[#B7FF3C]/40 text-xs font-extrabold uppercase tracking-wider text-[#B7FF3C] mb-3" data-i18n="revBadge">PLAYER REVIEWS</span>
+      <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white" data-i18n="revHeading">Loved by Dhaka’s Top Squads</h2>
+    </div>
+
+    <div id="testimonialsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+  </section>
+
+  <!-- ==========================================================================
+       12. ABOUT US SECTION ("BUILT FOR THE LOVE OF FOOTBALL.")
+       ========================================================================== -->
+  <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="glass-card rounded-3xl p-6 sm:p-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-6 space-y-5">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-[#B7FF3C]/15 border border-[#B7FF3C]/40 text-xs font-extrabold uppercase tracking-wider text-[#B7FF3C]" data-i18n="aboutBadge">OUR STORY &amp; VISION</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white leading-tight" data-i18n="aboutHeading">Built for the Love of Football.</h2>
+          <p class="text-sm sm:text-base text-[#A8B0BC] leading-relaxed" data-i18n="aboutContent">
+            ARENA 360 is a premium football turf facility built to bring players, teams, and communities together. We provide a professional football environment where every match becomes an unforgettable experience.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10">
+              <div class="text-xs font-extrabold uppercase text-[#B7FF3C] mb-1" data-i18n="aboutMissionTitle">OUR MISSION</div>
+              <p class="text-xs text-[#A8B0BC] leading-relaxed" data-i18n="aboutMissionDesc">To deliver injury-free FIFA-standard turf surfaces, seamless 10-second digital booking, and an electrifying stadium atmosphere for every player.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10">
+              <div class="text-xs font-extrabold uppercase text-[#43F58C] mb-1" data-i18n="aboutVisionTitle">OUR VISION</div>
+              <p class="text-xs text-[#A8B0BC] leading-relaxed" data-i18n="aboutVisionDesc">To pioneer the next generation of smart sports-tech arenas across Bangladesh where youth academies, clubs, and corporate athletes thrive.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div class="space-y-4">
+            <div class="h-48 rounded-2xl overflow-hidden border border-white/15">
+              <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?auto=format&fit=crop&w=700&q=80" alt="Night Football Match" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-5 rounded-2xl bg-gradient-to-br from-[#B7FF3C]/20 to-[#101722] border border-[#B7FF3C]/40">
+              <div class="font-display text-3xl font-extrabold text-[#B7FF3C]">100%</div>
+              <div class="text-xs text-white font-bold mt-1" data-i18n="aboutCardTag1">FIFA Quality Pro Shock-Pad Turf</div>
+            </div>
+          </div>
+          <div class="space-y-4 pt-6">
+            <div class="p-5 rounded-2xl bg-white/5 border border-white/15">
+              <div class="font-display text-3xl font-extrabold text-[#43F58C]">24/7</div>
+              <div class="text-xs text-white font-bold mt-1" data-i18n="aboutCardTag2">Smart Online Slot &amp; AI Concierge</div>
+            </div>
+            <div class="h-48 rounded-2xl overflow-hidden border border-white/15">
+              <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=700&q=80" alt="Stadium Floodlights" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       16. CUSTOMER DASHBOARD PREVIEW SECTION
+       ========================================================================== -->
+  <section id="dashboard-preview" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      <div>
+        <span class="inline-block px-3.5 py-1 rounded-full bg-[#43F58C]/15 border border-[#43F58C]/40 text-xs font-extrabold uppercase tracking-wider text-[#43F58C] mb-3" data-i18n="dashBadge">PLAYER &amp; CAPTAIN PORTAL</span>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white" data-i18n="dashHeading">Interactive Customer Dashboard</h2>
+      </div>
+      <div class="flex flex-wrap gap-2" id="dashboardTabButtons">
+        <button type="button" onclick="switchDashboardTab('bookings')" id="dashTab-bookings" class="px-4 py-2 rounded-xl text-xs font-extrabold btn-neon cursor-pointer" data-i18n="dashTabBookings">My Bookings</button>
+        <button type="button" onclick="switchDashboardTab('tournaments')" id="dashTab-tournaments" class="px-4 py-2 rounded-xl text-xs font-bold btn-glass cursor-pointer" data-i18n="dashTabTournaments">Tournaments</button>
+        <button type="button" onclick="switchDashboardTab('payments')" id="dashTab-payments" class="px-4 py-2 rounded-xl text-xs font-bold btn-glass cursor-pointer" data-i18n="dashTabPayments">Payment History</button>
+        <button type="button" onclick="switchDashboardTab('profile')" id="dashTab-profile" class="px-4 py-2 rounded-xl text-xs font-bold btn-glass cursor-pointer" data-i18n="dashTabProfile">Profile Info</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+      <!-- Left 4 Columns: Player Profile Summary Card -->
+      <div class="lg:col-span-4 glass-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-4 pb-5 mb-5 border-b border-white/10">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#B7FF3C] to-[#43F58C] text-[#080B10] font-display font-black text-xl flex items-center justify-center">
+              ZR
+            </div>
+            <div>
+              <span class="px-2 py-0.5 rounded bg-[#B7FF3C]/20 text-[#B7FF3C] text-[10px] font-extrabold uppercase">PRO CAPTAIN TIER</span>
+              <h3 class="text-lg font-extrabold text-white mt-0.5">Zayan Rahman</h3>
+              <p class="text-xs text-[#A8B0BC]">Dhaka United FC • +880 1711-889900</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 mb-5">
+            <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-[11px] text-[#A8B0BC]" data-i18n="dashActiveBookings">Active Bookings</div>
+              <div id="dashCountBookings" class="font-display text-2xl font-extrabold text-[#B7FF3C] mt-0.5">2</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-[11px] text-[#A8B0BC]" data-i18n="dashRegisteredCups">Registered Cups</div>
+              <div id="dashCountTournaments" class="font-display text-2xl font-extrabold text-[#43F58C] mt-0.5">1</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#quick-booking" class="btn-neon w-full py-3 rounded-xl text-xs font-extrabold text-center block" data-i18n="dashNewSlotBtn">+ Book Another Turf Slot</a>
+      </div>
+
+      <!-- Right 8 Columns: Dynamic Dashboard View Panel -->
+      <div class="lg:col-span-8 glass-card rounded-3xl p-6 sm:p-7" id="dashboardContentArea"></div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       14. INTERACTIVE 9-QUESTION FAQ ACCORDION
+       ========================================================================== -->
+  <section id="faq-section" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div id="faq" class="max-w-4xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="inline-block px-3.5 py-1 rounded-full bg-[#43F58C]/15 border border-[#43F58C]/40 text-xs font-extrabold uppercase tracking-wider text-[#43F58C] mb-3" data-i18n="faqBadge">SUPPORT &amp; HELP CENTER</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white" data-i18n="faqHeading">Frequently Asked Questions</h2>
+      </div>
+      <div id="faqAccordionList" class="space-y-3"></div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       15. CONTACT SECTION (DETAILS + INTERACTIVE MAP PREVIEW + VALIDATED FORM)
+       ========================================================================== -->
+  <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left 5 Columns: Contact Info & Map Placeholder -->
+      <div class="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-[#B7FF3C]/15 border border-[#B7FF3C]/40 text-xs font-extrabold uppercase text-[#B7FF3C] mb-3" data-i18n="contactBadge">GET IN TOUCH</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white" data-i18n="contactHeading">Visit or Contact ARENA 360</h2>
+          <p class="text-xs sm:text-sm text-[#A8B0BC] mt-2" data-i18n="contactSub">
+            Our operations desk is open daily from 6:00 AM to 11:30 PM for instant slot assistance, corporate bookings, and tournament inquiries.
+          </p>
+
+          <div class="space-y-3.5 mt-6 text-xs sm:text-sm">
+            <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+              <span class="text-[#A8B0BC]" data-i18n="contactPhoneLbl">Hotline &amp; Booking Desk</span>
+              <span class="font-extrabold text-white">+880 1700-360360</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+              <span class="text-[#A8B0BC]">WhatsApp Direct</span>
+              <span class="font-extrabold text-[#43F58C]">+880 1700-360360</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+              <span class="text-[#A8B0BC]">Email</span>
+              <span class="font-extrabold text-white">play@arena360turf.com</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-[#A8B0BC] mb-0.5" data-i18n="contactAddrLbl">Arena Complex Address</div>
+              <div class="font-extrabold text-white">Plot 14, Sports Avenue, Gulshan-Tejgaon Link Corridor, Dhaka 1212</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Styled Radar Map Placeholder -->
+        <div class="rounded-2xl bg-[#101722] border border-white/15 p-4 relative overflow-hidden">
+          <div class="flex items-center justify-between text-xs mb-2">
+            <span class="font-extrabold text-[#B7FF3C]">📍 ARENA 360 GPS RADAR</span>
+            <span class="text-[#43F58C] font-bold">Free Secured Parking</span>
+          </div>
+          <svg viewBox="0 0 400 130" class="w-full h-28 rounded-xl bg-[#080B10]">
+            <line x1="0" y1="40" x2="400" y2="40" stroke="#1e293b" stroke-width="6" />
+            <line x1="0" y1="95" x2="400" y2="95" stroke="#1e293b" stroke-width="4" />
+            <line x1="140" y1="0" x2="170" y2="130" stroke="#1e293b" stroke-width="8" />
+            <line x1="290" y1="0" x2="260" y2="130" stroke="#1e293b" stroke-width="5" />
+            <circle cx="215" cy="65" r="24" fill="rgba(183,255,60,0.18)" />
+            <circle cx="215" cy="65" r="8" fill="#B7FF3C" />
+            <text x="215" y="45" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">ARENA 360 COMPLEX</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right 7 Columns: Contact Form -->
+      <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8">
+        <h3 class="font-display text-2xl font-extrabold text-white mb-2" data-i18n="contactFormTitle">Send Us a Direct Message</h3>
+        <p class="text-xs sm:text-sm text-[#A8B0BC] mb-6" data-i18n="contactFormSub">Planning a corporate tournament, academy camp, or bulk club booking? Drop us a message below.</p>
+
+        <div id="contactSuccessBanner" class="hidden mb-5 p-4 rounded-2xl bg-[#43F58C]/15 border border-[#43F58C] text-xs sm:text-sm text-[#43F58C] font-bold"></div>
+
+        <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblFullName">Full Name *</label>
+              <input id="cName" type="text" required placeholder="e.g., Farhan Chowdhury" class="arena-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblPhone">Phone Number *</label>
+              <input id="cPhone" type="tel" required placeholder="e.g., +880 17XX-XXXXXX" class="arena-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblEmail">Email Address *</label>
+              <input id="cEmail" type="email" required placeholder="you@company.com" class="arena-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblSubject">Subject *</label>
+              <input id="cSubject" type="text" required placeholder="Corporate Tournament / Club Retainer" class="arena-input w-full px-4 py-3 rounded-xl text-sm" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-[#A8B0BC] mb-1.5" data-i18n="lblMessage">Message *</label>
+            <textarea id="cMessage" rows="4" required placeholder="Tell us your preferred dates, number of teams, or custom requirements..." class="arena-input w-full px-4 py-3 rounded-xl text-sm"></textarea>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button type="submit" class="btn-neon px-7 py-3.5 rounded-xl text-xs sm:text-sm font-extrabold cursor-pointer">
+              <span data-i18n="btnSendMsg">Send Message</span>
+            </button>
+            <a href="https://wa.me/8801700360360" target="_blank" rel="noreferrer" class="btn-glass px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold inline-flex items-center gap-2 text-[#43F58C]">
+              <span data-i18n="btnWhatsappUs">WhatsApp Us</span>
+              <span>→</span>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       17. COMPLETE 5-COLUMN WEBSITE FOOTER
+       ========================================================================== -->
+  <footer class="mt-12 border-t border-white/10 bg-[#05070B]/95 backdrop-blur-2xl pt-16 pb-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-white/10">
+        <!-- COLUMN 1: BRAND + VECTOR SVG SOCIAL ICONS -->
+        <div class="lg:col-span-1 space-y-4">
+          <a href="#home" class="flex items-center gap-3">
+            <svg viewBox="0 0 48 48" class="w-10 h-10">
+              <use href="#arena360-logo-mark"></use>
+            </svg>
+            <div>
+              <span class="font-display font-extrabold text-lg text-white">ARENA <span class="text-[#B7FF3C]">360</span></span>
+              <p class="text-[11px] text-[#A8B0BC]" data-i18n="brandTagline">Your Game. Your Arena.</p>
+            </div>
+          </a>
+          <p class="text-xs text-[#A8B0BC] leading-relaxed" data-i18n="footerBrandDesc">
+            Bangladesh’s premier 2026–2027 smart football turf destination featuring FIFA-grade pitches, shadowless LED floodlights, and instant digital slot booking.
+          </p>
+          <!-- 6 Custom Vector SVG Social Media Icon Buttons (40x40 Frosted Glass) -->
+          <div class="flex flex-wrap items-center gap-2 pt-1">
+            <!-- 1. Facebook -->
+            <button type="button" onclick="openInfoToast('Facebook — Official ARENA 360 Community Page (45K+ Followers)')" class="social-glass-icon" aria-label="Facebook" title="Facebook">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+              </svg>
+            </button>
+
+            <!-- 2. Instagram -->
+            <button type="button" onclick="openInfoToast('Instagram — @arena360turf Match Reels & Night Stadium Highlights')" class="social-glass-icon" aria-label="Instagram" title="Instagram">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+              </svg>
+            </button>
+
+            <!-- 3. YouTube -->
+            <button type="button" onclick="openInfoToast('YouTube — ARENA 360 HD Finals & Championship Highlights')" class="social-glass-icon" aria-label="YouTube" title="YouTube">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21.582 7.186a2.506 2.506 0 0 0-1.768-1.768C18.254 5 12 5 12 5s-6.254 0-7.814.418c-.86.23-1.538.908-1.768 1.768C2 8.746 2 12 2 12s0 3.254.418 4.814c.23.86.908 1.538 1.768 1.768C5.746 19 12 19 12 19s6.254 0 7.814-.418a2.506 2.506 0 0 0 1.768-1.768C22 15.254 22 12 22 12s0-3.254-.418-4.814zM10 15.464V8.536L16 12l-6 3.464z" />
+              </svg>
+            </button>
+
+            <!-- 4. TikTok -->
+            <button type="button" onclick="openInfoToast('TikTok — @arena360 Top Skills & Goals of the Week')" class="social-glass-icon" aria-label="TikTok" title="TikTok">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+              </svg>
+            </button>
+
+            <!-- 5. WhatsApp -->
+            <a href="https://wa.me/8801700360360" target="_blank" rel="noreferrer" class="social-glass-icon" aria-label="WhatsApp" title="WhatsApp Direct">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.82 14.12c-.24.68-1.41 1.3-1.97 1.38-.51.08-1.17.11-1.89-.12-.44-.14-1-.33-1.72-.64-3.03-1.31-5.01-4.36-5.16-4.56-.15-.2-1.23-1.64-1.23-3.13 0-1.49.78-2.22 1.06-2.52.28-.3.6-.38.8-.38.2 0 .4 0 .58.01.18.01.43-.07.67.51.24.58.82 2.01.89 2.16.07.15.12.33.02.53-.1.2-.15.33-.3.5-.15.17-.32.39-.45.52-.15.15-.3.31-.13.61.17.3.78 1.29 1.68 2.09 1.15 1.03 2.12 1.35 2.42 1.5.3.15.48.13.65-.08.17-.21.75-.88.95-1.18.2-.3.4-.25.68-.15.28.1 1.77.83 2.07.98.3.15.5.23.58.35.08.13.08.73-.16 1.41z" />
+              </svg>
+            </a>
+
+            <!-- 6. Messenger -->
+            <button type="button" onclick="toggleAiAssistant(true)" class="social-glass-icon" aria-label="Messenger" title="Messenger / ARENA AI">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.13.26.35.27.57l.05 1.78c.02.57.61.94 1.13.71l1.98-.87c.17-.08.36-.1.55-.06.91.25 1.87.38 2.88.38 5.64 0 10-4.13 10-9.7C22 6.13 17.64 2 12 2zm5.95 7.46-2.93 4.65a1.5 1.5 0 0 1-2.17.4l-2.33-1.75a.6.6 0 0 0-.72 0l-3.15 2.39c-.42.32-.97-.19-.68-.63l2.93-4.65a1.5 1.5 0 0 1 2.17-.4l2.33 1.75a.6.6 0 0 0 .72 0l3.15-2.39c.42-.32.97.19.68.63z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: QUICK LINKS -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-wider text-white mb-4" data-i18n="footerColQuick">Quick Links</h4>
+          <ul class="space-y-2.5 text-xs text-[#A8B0BC]">
+            <li><a href="#home" class="hover:text-[#B7FF3C] transition-colors" data-i18n="navHome">Home</a></li>
+            <li><a href="#about" class="hover:text-[#B7FF3C] transition-colors" data-i18n="navAbout">About Us</a></li>
+            <li><a href="#our-turf" class="hover:text-[#B7FF3C] transition-colors" data-i18n="navTurf">Our Turf</a></li>
+            <li><a href="#booking-calendar" class="hover:text-[#B7FF3C] transition-colors" data-i18n="navBookSlot">Book a Slot</a></li>
+            <li><a href="#pricing" class="hover:text-[#B7FF3C] transition-colors" data-i18n="navPricing">Pricing</a></li>
+            <li><a href="#gallery" class="hover:text-[#B7FF3C] transition-colors" data-i18n="navGallery">Gallery</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 3: SERVICES -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-wider text-white mb-4" data-i18n="footerColServices">Services</h4>
+          <ul class="space-y-2.5 text-xs text-[#A8B0BC]">
+            <li><a href="#quick-booking" class="hover:text-[#B7FF3C] transition-colors" data-i18n="srvTurfBooking">Turf Booking</a></li>
+            <li><a href="#tournaments" class="hover:text-[#B7FF3C] transition-colors" data-i18n="srvTournamentOrg">Tournament Organization</a></li>
+            <li><a href="#contact" class="hover:text-[#B7FF3C] transition-colors" data-i18n="srvCorporate">Corporate Events</a></li>
+            <li><a href="#contact" class="hover:text-[#B7FF3C] transition-colors" data-i18n="srvTraining">Football Training</a></li>
+            <li><a href="#tournaments" class="hover:text-[#B7FF3C] transition-colors" data-i18n="srvTeamReg">Team Registration</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 4: SUPPORT -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-wider text-white mb-4" data-i18n="footerColSupport">Support</h4>
+          <ul class="space-y-2.5 text-xs text-[#A8B0BC]">
+            <li><a href="#faq" class="hover:text-[#B7FF3C] transition-colors" data-i18n="supFaq">FAQ</a></li>
+            <li><button onclick="openInfoToast('Booking Policy: Instant slot lock upon confirmation. Arrive 15 minutes before kickoff.')" class="hover:text-[#B7FF3C] transition-colors text-left" data-i18n="supBookingPolicy">Booking Policy</button></li>
+            <li><button onclick="openInfoToast('Cancellation Policy: Free rescheduling or cancellation up to 24 hours before match time.')" class="hover:text-[#B7FF3C] transition-colors text-left" data-i18n="supCancelPolicy">Cancellation Policy</button></li>
+            <li><button onclick="openInfoToast('Privacy Policy: Player contact and booking records are encrypted and never shared.')" class="hover:text-[#B7FF3C] transition-colors text-left" data-i18n="supPrivacy">Privacy Policy</button></li>
+            <li><button onclick="openInfoToast('Terms & Conditions: Turf shoes or trainers required; metal studs are not permitted on synthetic pro turf.')" class="hover:text-[#B7FF3C] transition-colors text-left" data-i18n="supTerms">Terms &amp; Conditions</button></li>
+            <li><a href="#contact" class="hover:text-[#B7FF3C] transition-colors" data-i18n="supContact">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 5: CONTACT -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-wider text-white mb-4" data-i18n="footerColContact">Contact</h4>
+          <ul class="space-y-2.5 text-xs text-[#A8B0BC]">
+            <li><strong class="text-white">Phone:</strong> +880 1700-360360</li>
+            <li><strong class="text-white">WhatsApp:</strong> +880 1700-360360</li>
+            <li><strong class="text-white">Email:</strong> play@arena360turf.com</li>
+            <li><strong class="text-white">Address:</strong> Plot 14, Sports Avenue, Dhaka</li>
+            <li><strong class="text-[#43F58C]">Hours:</strong> 06:00 AM – 11:30 PM Daily</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Footer Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A8B0BC]">
+        <div>Copyright © 2026 <strong class="text-white">ARENA 360</strong> • All Rights Reserved.</div>
+        <div class="flex flex-wrap items-center gap-4">
+          <button onclick="openInfoToast('Privacy Policy: ARENA 360 Commercial Presentation Demo.')" class="hover:text-white" data-i18n="supPrivacy">Privacy Policy</button>
+          <span>•</span>
+          <button onclick="openInfoToast('Terms & Conditions: Simulated Front-End Presentation Platform.')" class="hover:text-white" data-i18n="supTerms">Terms &amp; Conditions</button>
+          <span>•</span>
+          <span>Designed &amp; Developed by <strong class="text-[#B7FF3C]">ARENA 360 Digital Studio</strong></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS: BOOKING CONFIRMATION, TURF DETAILS, TOURNAMENT REG, LIGHTBOX, TOAST
+       ========================================================================== -->
+
+  <!-- Global Notification Toast -->
+  <div id="infoToast" class="hidden fixed top-24 right-5 z-50 max-w-md glass-card rounded-2xl p-4 border border-[#B7FF3C] shadow-2xl items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#B7FF3C] shrink-0"></span>
+      <p id="infoToastText" class="text-xs sm:text-sm font-bold text-white"></p>
+    </div>
+    <button onclick="closeInfoToast()" class="text-[#A8B0BC] hover:text-white text-sm font-bold">✕</button>
+  </div>
+
+  <!-- MODAL 1: BOOKING CONFIRMATION MODAL -->
+  <div id="bookingModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-[#B7FF3C]/50 relative">
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-8 h-8 rounded-lg glass-pill text-white hover:text-[#B7FF3C]">✕</button>
+      <span class="px-2.5 py-1 rounded-full bg-[#B7FF3C]/20 text-[#B7FF3C] text-[10px] font-extrabold uppercase">INSTANT SLOT RESERVATION</span>
+      <h3 class="font-display text-2xl font-extrabold text-white mt-1 mb-4" data-i18n="modalBookHeading">Complete Your Turf Booking</h3>
+
+      <div id="bookingModalSummary" class="p-4 rounded-2xl bg-[#101722] border border-white/15 space-y-2 text-xs mb-5"></div>
+
+      <form id="bookingConfirmForm" onsubmit="confirmFinalBooking(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1">Captain / Player Full Name *</label>
+          <input id="bmCaptainName" type="text" required value="Zayan Rahman" class="arena-input w-full px-3.5 py-2.5 rounded-xl text-sm" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#A8B0BC] mb-1">Phone / WhatsApp *</label>
+            <input id="bmPhone" type="tel" required value="+880 1711-889900" class="arena-input w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#A8B0BC] mb-1">Team Name</label>
+            <input id="bmTeam" type="text" value="Dhaka United FC" class="arena-input w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1">Preferred Payment Method (Simulated)</label>
+          <select id="bmPayment" class="arena-input w-full px-3.5 py-2.5 rounded-xl text-xs font-bold">
+            <option value="bKash Instant Pay">bKash Instant Pay</option>
+            <option value="Nagad Wallet">Nagad Wallet</option>
+            <option value="Visa / Mastercard">Visa / Mastercard</option>
+            <option value="Pay at Arena Desk">Pay at Arena Desk</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-neon w-full py-3.5 rounded-xl text-sm font-extrabold cursor-pointer mt-2">
+          Confirm &amp; Generate Match Pass
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 2: TURF SPECIFICATION DETAILS MODAL -->
+  <div id="turfDetailModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-white/20 relative">
+      <button onclick="closeTurfDetailModal()" class="absolute top-5 right-5 w-8 h-8 rounded-lg glass-pill text-white hover:text-[#B7FF3C]">✕</button>
+      <div id="turfDetailContent"></div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: TOURNAMENT REGISTRATION MODAL -->
+  <div id="tournamentModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-4">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-[#B7FF3C]/50 relative">
+      <button onclick="closeTournamentModal()" class="absolute top-5 right-5 w-8 h-8 rounded-lg glass-pill text-white hover:text-[#B7FF3C]">✕</button>
+      <span class="px-2.5 py-1 rounded-full bg-[#B7FF3C]/20 text-[#B7FF3C] text-[10px] font-extrabold uppercase">OFFICIAL SQUAD ENTRY</span>
+      <h3 id="tournModalTitle" class="font-display text-2xl font-extrabold text-white mt-1 mb-1">ARENA CHAMPIONS CUP</h3>
+      <p id="tournModalMeta" class="text-xs text-[#43F58C] font-bold mb-4"></p>
+
+      <form onsubmit="submitTournamentRegistration(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1">Official Team / Club Name *</label>
+          <input id="tmTeamName" type="text" required placeholder="e.g., Gulshan Galacticos FC" class="arena-input w-full px-3.5 py-2.5 rounded-xl text-sm" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-[#A8B0BC] mb-1">Captain Name *</label>
+            <input id="tmCaptain" type="text" required placeholder="Captain Full Name" class="arena-input w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-[#A8B0BC] mb-1">Captain Mobile *</label>
+            <input id="tmPhone" type="tel" required placeholder="+880 17XX-XXXXXX" class="arena-input w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-[#A8B0BC] mb-1">Primary Kit / Jersey Color</label>
+          <input id="tmKit" type="text" placeholder="e.g., Neon Lime & Midnight Black" class="arena-input w-full px-3.5 py-2.5 rounded-xl text-sm" />
+        </div>
+        <button type="submit" class="btn-neon w-full py-3.5 rounded-xl text-sm font-extrabold cursor-pointer">
+          Lock Team Slot &amp; Register Now
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 4: GALLERY LIGHTBOX MODAL -->
+  <div id="lightboxModal" class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-xl items-center justify-center p-4">
+    <div class="max-w-4xl w-full relative">
+      <button onclick="closeLightbox()" class="absolute -top-12 right-0 px-3.5 py-1.5 rounded-xl glass-pill text-xs font-extrabold text-white hover:text-[#B7FF3C]">Close ✕</button>
+      <div class="rounded-3xl overflow-hidden border border-white/20 bg-[#080B10]">
+        <img id="lightboxImg" src="" alt="Gallery Fullscreen" class="w-full max-h-[70vh] object-cover" />
+        <div class="p-5 flex items-center justify-between gap-4">
+          <div>
+            <span id="lightboxCat" class="text-[10px] font-extrabold uppercase text-[#B7FF3C]"></span>
+            <h4 id="lightboxTitle" class="text-lg font-extrabold text-white"></h4>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="stepLightbox(-1)" class="px-3.5 py-2 rounded-xl btn-glass text-xs font-bold">← Prev</button>
+            <button onclick="stepLightbox(1)" class="px-3.5 py-2 rounded-xl btn-glass text-xs font-bold">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       9. FLOATING AI SMART BOOKING ASSISTANT ("ARENA AI") & BACK TO TOP
+       ========================================================================== -->
+  <!-- Back to Top Floating Button (Bottom Left) -->
+  <button id="backToTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="hidden fixed bottom-6 left-6 z-40 w-11 h-11 rounded-2xl glass-card border border-[#B7FF3C]/40 items-center justify-center text-[#B7FF3C] hover:scale-105 transition-all cursor-pointer" title="Back to Top">
+    ↑
+  </button>
+
+  <!-- Floating AI Smart Booking Assistant (Bottom Right) -->
+  <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
+    <!-- Launcher Button -->
+    <button id="aiLauncher" onclick="toggleAiAssistant(true)" class="btn-neon px-4 py-3.5 rounded-2xl flex items-center gap-3 shadow-2xl cursor-pointer">
+      <span class="relative flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#080B10] opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-[#080B10]"></span>
+      </span>
+      <div class="text-left">
+        <div class="text-xs font-black leading-none">ARENA AI</div>
+        <div class="hidden sm:block text-[10px] font-bold opacity-80 mt-0.5" data-i18n="aiTagline">Smart Booking Assistant</div>
+      </div>
+    </button>
+
+    <!-- Glassmorphism Chat Window -->
+    <div id="aiChatWindow" class="hidden w-[340px] sm:w-[390px] glass-card rounded-3xl border border-[#B7FF3C]/45 overflow-hidden flex-col shadow-[0_25px_70px_rgba(0,0,0,0.85)]">
+      <!-- Header -->
+      <div class="p-4 bg-gradient-to-r from-[#101722] via-[#162235] to-[#101722] border-b border-white/15 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#B7FF3C] text-[#080B10] font-display font-black text-xs flex items-center justify-center">AI</div>
+          <div>
+            <div class="text-sm font-extrabold text-white">ARENA AI</div>
+            <div class="text-[11px] text-[#43F58C]" data-i18n="aiTagline">Your Smart Football Booking Assistant</div>
+          </div>
+        </div>
+        <button onclick="toggleAiAssistant(false)" class="w-7 h-7 rounded-lg glass-pill text-xs text-white hover:text-[#B7FF3C]">✕</button>
+      </div>
+
+      <!-- 5 Quick Action Chips -->
+      <div class="px-3 py-2 bg-[#080B10]/80 border-b border-white/10 flex items-center gap-1.5 overflow-x-auto">
+        <button onclick="triggerAiQuickAction('Book a Turf')" class="px-2.5 py-1 rounded-full glass-pill text-[10px] font-bold text-[#B7FF3C] whitespace-nowrap cursor-pointer">Book a Turf</button>
+        <button onclick="triggerAiQuickAction('Check Availability')" class="px-2.5 py-1 rounded-full glass-pill text-[10px] font-bold text-white whitespace-nowrap cursor-pointer">Check Availability</button>
+        <button onclick="triggerAiQuickAction('Tournament Information')" class="px-2.5 py-1 rounded-full glass-pill text-[10px] font-bold text-white whitespace-nowrap cursor-pointer">Tournaments</button>
+        <button onclick="triggerAiQuickAction('Pricing')" class="px-2.5 py-1 rounded-full glass-pill text-[10px] font-bold text-white whitespace-nowrap cursor-pointer">Pricing</button>
+        <button onclick="triggerAiQuickAction('Contact Support')" class="px-2.5 py-1 rounded-full glass-pill text-[10px] font-bold text-white whitespace-nowrap cursor-pointer">Contact Support</button>
+      </div>
+
+      <!-- Chat Messages Feed -->
+      <div id="aiChatMessages" class="p-4 space-y-3 max-h-[270px] overflow-y-auto bg-[#080B10]/65"></div>
+
+      <!-- Typing Indicator -->
+      <div id="aiTypingBox" class="hidden px-4 py-2 bg-[#080B10]/65 text-xs text-[#B7FF3C] items-center gap-1.5">
+        <span>ARENA AI is typing</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#B7FF3C] inline-block typing-dot"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#B7FF3C] inline-block typing-dot"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#B7FF3C] inline-block typing-dot"></span>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form onsubmit="handleAiChatSubmit(event)" class="p-3 bg-[#101722] border-t border-white/10 flex items-center gap-2">
+        <input id="aiUserInput" type="text" placeholder="Ask about slots, turf prices, cups..." class="arena-input flex-1 px-3 py-2 rounded-xl text-xs" />
+        <button type="submit" class="btn-neon px-3.5 py-2 rounded-xl text-xs font-extrabold cursor-pointer">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT ENGINE (LANGUAGE DICTIONARY, CALENDAR, BOOKING, AI)
+       ========================================================================== -->
+  <script>
+    /* --------------------------------------------------------------------------
+       1. BILINGUAL DICTIONARY (ENGLISH & BANGLA)
+       -------------------------------------------------------------------------- */
+    const I18N = {
+      en: {
+        brandTagline: "Your Game. Your Arena.",
+        navHome: "Home",
+        navTurf: "Our Turf",
+        navBookSlot: "Book a Slot",
+        navTournaments: "Tournaments",
+        navPricing: "Pricing",
+        navGallery: "Gallery",
+        navAbout: "About Us",
+        navContact: "Contact",
+        navLogin: "My Dashboard",
+        navBookNow: "Book Now",
+        heroBadge: "PREMIUM FOOTBALL TURF EXPERIENCE",
+        heroLiveBadge: "Live Availability: 6 Slots Open Tonight",
+        heroTitleLine1: "Your Game.",
+        heroTitleLine2: "Your Arena.",
+        heroSubtitle: "Book your favorite football turf in seconds. Play with your team, organize tournaments, and experience football like never before.",
+        heroCtaPrimary: "Book Your Turf",
+        heroCtaSecondary: "Explore Our Arena",
+        statPlayers: "Happy Players",
+        statBookings: "Successful Bookings",
+        statTournaments: "Tournaments",
+        statRating: "Customer Rating",
+        heroCardTitle: "ARENA 360 LIVE TELEMETRY",
+        heroCardTurfName: "Arena 360 Main Turf (7v7)",
+        lblStartingAt: "Starting at",
+        heroCardSub: "Tonight's Prime Slots (Click to Pre-Fill):",
+        heroCardAction: "Configure Booking",
+        scrollExplore: "Scroll to Book",
+        qbTitle: "Instant Turf Booking Console",
+        qbSubtitle: "Select your preferred turf, date, slot, and duration for real-time fare calculation",
+        qbInstantBadge: "● Instant Confirmation Demo",
+        lblSelectTurf: "1. Select Turf",
+        lblSelectDate: "2. Select Date",
+        lblSelectSlot: "3. Time Slot",
+        lblDuration: "4. Duration",
+        lblPlayers: "5. Players",
+        lblTotalPrice: "6. Total Price",
+        btnBookNow: "Book Now",
+        turfSectionBadge: "FIFA-GRADE SURFACES",
+        turfSectionTitle: "Choose Your Championship Pitch",
+        turfSectionSub: "Three purpose-engineered synthetic grass arenas with high-lumen shadowless LED floodlights and pro locker rooms.",
+        amenitiesTitle: "ALL BOOKINGS INCLUDE 8 PREMIUM ARENA AMENITIES",
+        calBadge: "INTERACTIVE SCHEDULE MATRIX",
+        calTitle: "Booking Calendar & Live Availability",
+        calSubtitle: "Pick any date on the monthly calendar to inspect real-time slot availability, filter by status, and lock your match time.",
+        calMonthLabel: "SELECT MATCH DATE",
+        legendAvailable: "Available",
+        legendLimited: "Limited",
+        legendBooked: "Booked",
+        calSlotHeading: "Available & Booked Time Slots",
+        btnLockSelectedSlot: "Confirm Selected Slot →",
+        tournBadge: "CHAMPIONSHIP LEAGUES",
+        tournHeading: "Make Every Match Count.",
+        tournSub: "Compete in official ARENA 360 floodlit tournaments with certified referees, live digital stats, HD stream highlights, and cash prize pools.",
+        pricingBadge: "TRANSPARENT HOURLY RATES",
+        pricingHeading: "Flexible Session Pricing",
+        pricingSub: "Zero hidden charges. Every session includes floodlights, match balls, bibs, changing rooms, and filtered drinking water.",
+        pFaq1Q: "Are floodlights & footballs included?",
+        pFaq1A: "Yes! Evening and night bookings include full stadium LED illumination, 2 FIFA-grade match balls, and team bibs at zero extra cost.",
+        pFaq2Q: "Do clubs get multi-hour discounts?",
+        pFaq2A: "Book 3+ consecutive hours or monthly recurring club slots to enjoy an automatic 10% loyalty rebate at our operations desk.",
+        pFaq3Q: "What payment methods are accepted?",
+        pFaq3A: "We accept bKash, Nagad, Rocket, Visa/Mastercard, corporate bank transfer, and cash at the ARENA 360 desk.",
+        galBadge: "INSIDE ARENA 360",
+        galHeading: "Immersive Arena Gallery",
+        aboutBadge: "OUR STORY & VISION",
+        aboutHeading: "Built for the Love of Football.",
+        aboutContent: "ARENA 360 is a premium football turf facility built to bring players, teams, and communities together. We provide a professional football environment where every match becomes an unforgettable experience.",
+        aboutMissionTitle: "OUR MISSION",
+        aboutMissionDesc: "To deliver injury-free FIFA-standard turf surfaces, seamless 10-second digital booking, and an electrifying stadium atmosphere for every player.",
+        aboutVisionTitle: "OUR VISION",
+        aboutVisionDesc: "To pioneer the next generation of smart sports-tech arenas across Bangladesh where youth academies, clubs, and corporate athletes thrive.",
+        aboutCardTag1: "FIFA Quality Pro Shock-Pad Turf",
+        aboutCardTag2: "Smart Online Slot & AI Concierge",
+        dashBadge: "PLAYER & CAPTAIN PORTAL",
+        dashHeading: "Interactive Customer Dashboard",
+        dashTabBookings: "My Bookings",
+        dashTabTournaments: "Tournaments",
+        dashTabPayments: "Payment History",
+        dashTabProfile: "Profile Info",
+        dashActiveBookings: "Active Bookings",
+        dashRegisteredCups: "Registered Cups",
+        dashNewSlotBtn: "+ Book Another Turf Slot",
+        revBadge: "PLAYER REVIEWS",
+        revHeading: "Loved by Dhaka’s Top Squads",
+        faqBadge: "SUPPORT & HELP CENTER",
+        faqHeading: "Frequently Asked Questions",
+        contactBadge: "GET IN TOUCH",
+        contactHeading: "Visit or Contact ARENA 360",
+        contactSub: "Our operations desk is open daily from 6:00 AM to 11:30 PM for instant slot assistance, corporate bookings, and tournament inquiries.",
+        contactPhoneLbl: "Hotline & Booking Desk",
+        contactAddrLbl: "Arena Complex Address",
+        contactFormTitle: "Send Us a Direct Message",
+        contactFormSub: "Planning a corporate tournament, academy camp, or bulk club booking? Drop us a message below.",
+        lblFullName: "Full Name *",
+        lblPhone: "Phone Number *",
+        lblEmail: "Email Address *",
+        lblSubject: "Subject *",
+        lblMessage: "Message *",
+        btnSendMsg: "Send Message",
+        btnWhatsappUs: "WhatsApp Us",
+        footerBrandDesc: "Bangladesh’s premier 2026–2027 smart football turf destination featuring FIFA-grade pitches, shadowless LED floodlights, and instant digital slot booking.",
+        footerColQuick: "Quick Links",
+        footerColServices: "Services",
+        footerColSupport: "Support",
+        footerColContact: "Contact",
+        srvTurfBooking: "Turf Booking",
+        srvTournamentOrg: "Tournament Organization",
+        srvCorporate: "Corporate Events",
+        srvTraining: "Football Training",
+        srvTeamReg: "Team Registration",
+        supFaq: "FAQ",
+        supBookingPolicy: "Booking Policy",
+        supCancelPolicy: "Cancellation Policy",
+        supPrivacy: "Privacy Policy",
+        supTerms: "Terms & Conditions",
+        supContact: "Contact Support",
+        modalBookHeading: "Complete Your Turf Booking",
+        aiTagline: "Your Smart Football Booking Assistant"
+      },
+      bn: {
+        brandTagline: "আপনার খেলা, আপনার মাঠ।",
+        navHome: "হোম",
+        navTurf: "আমাদের টার্ফ",
+        navBookSlot: "স্লট বুকিং",
+        navTournaments: "টুর্নামেন্ট",
+        navPricing: "মূল্য তালিকা",
+        navGallery: "গ্যালারি",
+        navAbout: "আমাদের সম্পর্কে",
+        navContact: "যোগাযোগ",
+        navLogin: "ড্যাশবোর্ড",
+        navBookNow: "বুক করুন",
+        heroBadge: "প্রিমিয়াম ফুটবল টার্ফ অভিজ্ঞতা",
+        heroLiveBadge: "লাইভ আপডেট: আজ রাতে ৬টি স্লট খালি আছে",
+        heroTitleLine1: "আপনার খেলা।",
+        heroTitleLine2: "আপনার মাঠ।",
+        heroSubtitle: "কয়েক সেকেন্ডেই বুক করুন আপনার পছন্দের ফুটবল টার্ফ। বন্ধুদের সঙ্গে খেলুন, টুর্নামেন্ট আয়োজন করুন এবং উপভোগ করুন সেরা ফুটবল অভিজ্ঞতা।",
+        heroCtaPrimary: "টার্ফ বুক করুন",
+        heroCtaSecondary: "অ্যারেনা ঘুরে দেখুন",
+        statPlayers: "সন্তুষ্ট খেলোয়াড়",
+        statBookings: "সফল বুকিং",
+        statTournaments: "টুর্নামেন্ট",
+        statRating: "গ্রাহক রেটিং",
+        heroCardTitle: "ARENA 360 লাইভ টেলিমিতি",
+        heroCardTurfName: "অ্যারেনা ৩৬০ মেইন টার্ফ (৭ বনাম ৭)",
+        lblStartingAt: "শুরু মাত্র",
+        heroCardSub: "আজ রাতের প্রাইম স্লট (সিলেক্ট করতে ক্লিক করুন):",
+        heroCardAction: "বুকিং সম্পন্ন করুন",
+        scrollExplore: "বুক করতে নিচে যান",
+        qbTitle: "ইনস্ট্যান্ট টার্ফ বুকিং কনসোল",
+        qbSubtitle: "তাৎক্ষণিক ভাড়া হিসাব করতে আপনার পছন্দের টার্ফ, তারিখ, স্লট এবং সময়কাল নির্বাচন করুন",
+        qbInstantBadge: "● তাৎক্ষণিক কনফার্মেশন ডেমো",
+        lblSelectTurf: "১. টার্ফ নির্বাচন",
+        lblSelectDate: "২. তারিখ নির্বাচন",
+        lblSelectSlot: "৩. সময় স্লট",
+        lblDuration: "৪. সময়কাল",
+        lblPlayers: "৫. খেলোয়াড় সংখ্যা",
+        lblTotalPrice: "৬. মোট ভাড়া",
+        btnBookNow: "বুক করুন",
+        turfSectionBadge: "ফিফা-মানের টার্ফ সারফেস",
+        turfSectionTitle: "বেছে নিন আপনার চ্যাম্পিয়নশিপ মাঠ",
+        turfSectionSub: "উচ্চ-ক্ষমতাসম্পন্ন এলইডি ফ্লাডলাইট এবং প্রো ড্রেসিং রুমসহ তিনটি আন্তর্জাতিক মানের সিনথেটিক টার্ফ।",
+        amenitiesTitle: "প্রতিটি বুকিংয়ে থাকছে ৮টি প্রিমিয়াম অ্যারেনা সুবিধা",
+        calBadge: "ইন্টারঅ্যাক্টিভ শিডিউল ক্যালেন্ডার",
+        calTitle: "বুকিং ক্যালেন্ডার ও লাইভ স্লট স্ট্যাটাস",
+        calSubtitle: "মাসিক ক্যালেন্ডার থেকে যেকোনো তারিখ সিলেক্ট করে খালি ও বুকড স্লট দেখুন এবং আপনার ম্যাচের সময় নিশ্চিত করুন।",
+        calMonthLabel: "ম্যাচের তারিখ নির্বাচন করুন",
+        legendAvailable: "খালি আছে",
+        legendLimited: "সীমিত স্লট",
+        legendBooked: "বুকড",
+        calSlotHeading: "খালি এবং বুকড টাইম স্লটসমূহ",
+        btnLockSelectedSlot: "সিলেক্টেড স্লট বুক করুন →",
+        tournBadge: "চ্যাম্পিয়নশিপ লিগ",
+        tournHeading: "প্রতিটি ম্যাচ হোক স্মরণীয়।",
+        tournSub: "সার্টিফায়েড রেফারি, লাইভ ডিজিটাল স্কোরিং এবং আকর্ষণীয় প্রাইজমানির অফিশিয়াল ARENA 360 টুর্নামেন্টে অংশ নিন।",
+        pricingBadge: "স্বচ্ছ ঘণ্টাভিত্তিক ভাড়া",
+        pricingHeading: "সাশ্রয়ী সেশন প্রাইসিং",
+        pricingSub: "কোনো লুকানো চার্জ নেই। প্রতিটি সেশনে ফ্লাডলাইট, ম্যাচ বল, বিবস, চেঞ্জিং রুম এবং বিশুদ্ধ খাবার পানি অন্তর্ভুক্ত।",
+        pFaq1Q: "ফ্লাডলাইট এবং ফুটবল কি ভাড়ার মধ্যে অন্তর্ভুক্ত?",
+        pFaq1A: "হ্যাঁ! সন্ধ্যা ও রাতের বুকিংয়ে কোনো অতিরিক্ত খরচ ছাড়াই পূর্ণ এলইডি ফ্লাডলাইট, ২টি ম্যাচ বল এবং টিম বিবস প্রদান করা হয়।",
+        pFaq2Q: "একাধিক ঘণ্টা বুকিংয়ে কি ডিসকাউন্ট পাওয়া যায়?",
+        pFaq2A: "টানা ৩ ঘণ্টা বা তার বেশি বুকিং কিংবা মাসিক ক্লাব বুকিংয়ে আমাদের ডেস্ক থেকে ১০% লয়্যালটি ছাড় পাবেন।",
+        pFaq3Q: "কী কী পেমেন্ট মাধ্যম গ্রহণ করা হয়?",
+        pFaq3A: "বিকাশ, নগদ, রকেট, ভিসা/মাস্টারকার্ড, কর্পোরেট ব্যাংক ট্রান্সফার এবং অ্যারেনা ডেস্কে ক্যাশ পেমেন্ট সুবিধা রয়েছে।",
+        galBadge: "অ্যারেনা ৩৬০ গ্যালারি",
+        galHeading: "মাঠ ও ম্যাচের দারুণ মুহূর্ত",
+        aboutBadge: "আমাদের গল্প ও লক্ষ্য",
+        aboutHeading: "ফুটবলের ভালোবাসায় নির্মিত।",
+        aboutContent: "ARENA 360 একটি প্রিমিয়াম ফুটবল টার্ফ প্ল্যাটফর্ম, যেখানে খেলোয়াড়, দল এবং ফুটবলপ্রেমীদের একত্রিত করা হয়। আমরা এমন একটি পরিবেশ তৈরি করি যেখানে প্রতিটি ম্যাচ হয়ে ওঠে স্মরণীয়।",
+        aboutMissionTitle: "আমাদের মিশন",
+        aboutMissionDesc: "ইনজুরি-মুক্ত ফিফা মানের টার্ফ, ১০-সেকেন্ডে ডিজিটাল বুকিং এবং প্রতিটি খেলোয়াড়ের জন্য আন্তর্জাতিক স্টেডিয়ামের আবহ নিশ্চিত করা।",
+        aboutVisionTitle: "আমাদের ভিশন",
+        aboutVisionDesc: "বাংলাদেশে আধুনিক স্পোর্টস-টেক অ্যারেনা গড়ে তোলা যেখানে তরুণ একাডেমি, ক্লাব এবং কর্পোরেট টিমগুলো নিয়মিত খেলতে পারে।",
+        aboutCardTag1: "ফিফা কোয়ালিটি প্রো শক-প্যাড টার্ফ",
+        aboutCardTag2: "স্মার্ট অনলাইন স্লট ও এআই সহকারী",
+        dashBadge: "খেলোয়াড় ও ক্যাপ্টেন পোর্টাল",
+        dashHeading: "ইন্টারঅ্যাক্টিভ গ্রাহক ড্যাশবোর্ড",
+        dashTabBookings: "আমার বুকিং",
+        dashTabTournaments: "টুর্নামেন্ট",
+        dashTabPayments: "পেমেন্ট হিস্ট্রি",
+        dashTabProfile: "প্রোফাইল তথ্য",
+        dashActiveBookings: "সক্রিয় বুকিং",
+        dashRegisteredCups: "রেজিস্টার্ড কাপ",
+        dashNewSlotBtn: "+ নতুন টার্ফ স্লট বুক করুন",
+        revBadge: "খেলোয়াড়দের মতামত",
+        revHeading: "ঢাকার শীর্ষ টিমগুলোর প্রথম পছন্দ",
+        faqBadge: "সাপোর্ট ও হেল্প সেন্টার",
+        faqHeading: "সচরাচর জিজ্ঞাসিত প্রশ্নাবলি (FAQ)",
+        contactBadge: "যোগাযোগ করুন",
+        contactHeading: "ভিজিট বা মেসেজ করুন ARENA 360",
+        contactSub: "সকাল ৬:০০টা থেকে রাত ১১:৩০টা পর্যন্ত আমাদের অপারেশনস ডেস্ক বুকিং ও টুর্নামেন্ট সহায়তার জন্য খোলা থাকে।",
+        contactPhoneLbl: "হটলাইন ও বুকিং ডেস্ক",
+        contactAddrLbl: "অ্যারেনা কমপ্লেক্স ঠিকানা",
+        contactFormTitle: "আমাদের সরাসরি মেসেজ পাঠান",
+        contactFormSub: "কর্পোরেট টুর্নামেন্ট, একাডেমি ক্যাম্প বা ক্লাব বুকিং করতে চান? নিচের ফর্মটি পূরণ করুন।",
+        lblFullName: "পূর্ণ নাম *",
+        lblPhone: "মোবাইল নম্বর *",
+        lblEmail: "ইমেইল ঠিকানা *",
+        lblSubject: "বিষয় *",
+        lblMessage: "বার্তা *",
+        btnSendMsg: "বার্তা পাঠান",
+        btnWhatsappUs: "হোয়াটসঅ্যাপ করুন",
+        footerBrandDesc: "ফিফা-মানের সিনথেটিক পিচ, শ্যাডোলেস এলইডি ফ্লাডলাইট এবং তাৎক্ষণিক ডিজিটাল বুকিং সুবিধা নিয়ে বাংলাদেশের সেরা ফুটবল টার্ফ।",
+        footerColQuick: "কুইক লিংকস",
+        footerColServices: "সেবাসমূহ",
+        footerColSupport: "সহায়তা",
+        footerColContact: "যোগাযোগ",
+        srvTurfBooking: "টার্ফ বুকিং",
+        srvTournamentOrg: "টুর্নামেন্ট আয়োজন",
+        srvCorporate: "কর্পোরেট ইভেন্ট",
+        srvTraining: "ফুটবল প্রশিক্ষণ",
+        srvTeamReg: "টিম রেজিস্ট্রেশন",
+        supFaq: "প্রশ্নাবলি (FAQ)",
+        supBookingPolicy: "বুকিং নীতিমালা",
+        supCancelPolicy: "বাতিলকরণ নীতিমালা",
+        supPrivacy: "গোপনীয়তা নীতি",
+        supTerms: "শর্তাবলি",
+        supContact: "সাপোর্টে যোগাযোগ",
+        modalBookHeading: "আপনার টার্ফ বুকিং সম্পন্ন করুন",
+        aiTagline: "আপনার স্মার্ট ফুটবল বুকিং সহকারী"
+      }
+    };
+
+    /* --------------------------------------------------------------------------
+       2. CORE DATA MODELS (TURFS, AMENITIES, TOURNAMENTS, PRICING, GALLERY, FAQS)
+       -------------------------------------------------------------------------- */
+    const TURFS_DATA = [
+      {
+        id: 'main',
+        nameEn: 'ARENA MAIN TURF',
+        nameBn: 'অ্যারেনা মেইন টার্ফ',
+        typeEn: '7-a-Side Championship Pitch',
+        typeBn: '৭-এ-সাইড চ্যাম্পিয়নশিপ পিচ',
+        dimensions: '100 ft × 60 ft',
+        capacityEn: '14 Players (7v7)',
+        capacityBn: '১৪ জন খেলোয়াড় (৭ বনাম ৭)',
+        price: 2500,
+        statusEn: 'Available Today',
+        statusBn: 'আজ খালি আছে',
+        img: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=900&q=80',
+        descEn: 'Our flagship 7-a-side arena engineered with 50mm FIFA Quality Pro monofilament turf, shock-absorbing EPDM pad, and 600-lux shadowless LED floodlights.',
+        descBn: '৫০ মিমি ফিফা কোয়ালিটি প্রো টার্ফ, শক-প্যাড এবং ৬০০-লাক্স এলইডি ফ্লাডলাইটে সজ্জিত আমাদের প্রধান ৭-এ-সাইড মাঠ।'
+      },
+      {
+        id: 'mini',
+        nameEn: 'ARENA MINI TURF',
+        nameBn: 'অ্যারেনা মিনি টার্ফ',
+        typeEn: '5-a-Side Fast Cage Arena',
+        typeBn: '৫-এ-সাইড ফাস্ট কেজ অ্যারেনা',
+        dimensions: '80 ft × 45 ft',
+        capacityEn: '10 Players (5v5)',
+        capacityBn: '১০ জন খেলোয়াড় (৫ বনাম ৫)',
+        price: 1800,
+        statusEn: 'Fast Filling',
+        statusBn: 'দ্রুত বুক হচ্ছে',
+        img: 'https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=900&q=80',
+        descEn: 'High-tempo 5-a-side futsal & turf pitch with rebound perimeter netting, ideal for quick friendlies, skill drills, and evening squad sessions.',
+        descBn: 'দ্রুতগতির ৫-এ-সাইড ম্যাচ ও বন্ধুদের আড্ডার ম্যাচের জন্য রিবাউন্ড নেটসহ আদর্শ মিনি টার্ফ।'
+      },
+      {
+        id: 'pro',
+        nameEn: 'ARENA PRO TURF',
+        nameBn: 'অ্যারেনা প্রো টার্ফ',
+        typeEn: '8-a-Side League & Corporate Arena',
+        typeBn: '৮-এ-সাইড লিগ ও কর্পোরেট অ্যারেনা',
+        dimensions: '120 ft × 70 ft',
+        capacityEn: '16 Players (8v8)',
+        capacityBn: '১৬ জন খেলোয়াড় (৮ বনাম ৮)',
+        price: 3000,
+        statusEn: 'Prime Slots Open',
+        statusBn: 'প্রাইম স্লট খালি',
+        img: 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=900&q=80',
+        descEn: 'Full-scale 8-a-side tournament pitch with VIP dugout seating, digital scoreboard, PA sound system, and executive lounge access.',
+        descBn: 'ভিআইপি ডাগআউট, ডিজিটাল স্কোরবোর্ড এবং সাউন্ড সিস্টেমসহ পূর্ণাঙ্গ ৮-এ-সাইড টুর্নামেন্ট টার্ফ।'
+      }
+    ];
+
+    const AMENITIES_LIST = [
+      { icon: '💡', en: 'Floodlights', bn: 'ফ্লাডলাইট' },
+      { icon: '👕', en: 'Changing Rooms', bn: 'চেঞ্জিং রুম' },
+      { icon: '🚗', en: 'Parking', bn: 'পার্কিং সুবিধা' },
+      { icon: '🚿', en: 'Washroom', bn: 'ওয়াশরুম' },
+      { icon: '💧', en: 'Drinking Water', bn: 'খাবার পানি' },
+      { icon: '💺', en: 'Seating Area', bn: 'গ্যালারি সিটিং' },
+      { icon: '⚽', en: 'Football Equipment', bn: 'ফুটবল সরঞ্জাম' },
+      { icon: '🩹', en: 'First Aid', bn: 'ফার্স্ট এইড' }
+    ];
+
+    const TIME_SLOTS_LIST = [
+      '06:00 AM – 07:00 AM',
+      '07:00 AM – 08:00 AM',
+      '08:00 AM – 09:00 AM',
+      '09:00 AM – 10:00 AM',
+      '10:00 AM – 11:00 AM',
+      '03:00 PM – 04:00 PM',
+      '04:00 PM – 05:00 PM',
+      '05:00 PM – 06:00 PM',
+      '06:00 PM – 07:00 PM',
+      '07:00 PM – 08:00 PM',
+      '08:00 PM – 09:00 PM',
+      '09:00 PM – 10:00 PM'
+    ];
+
+    const TOURNAMENTS_DATA = [
+      {
+        id: 'cup-1',
+        nameEn: 'ARENA CHAMPIONS CUP',
+        nameBn: 'অ্যারেনা চ্যাম্পিয়নস কাপ',
+        teamsEn: '16 Teams Knockout & Group',
+        teamsBn: '১৬টি টিম (গ্রুপ ও নকআউট)',
+        deadlineEn: 'Reg. Deadline: Nov 24, 2026',
+        deadlineBn: 'শেষ তারিখ: ২৪ নভেম্বর, ২০২৬',
+        matchDateEn: 'Kickoff: Nov 28–29, 2026',
+        matchDateBn: 'ম্যাচ: ২৮–২৯ নভেম্বর, ২০২৬',
+        entryFee: '৳5,000',
+        prizePool: '৳50,000',
+        statusEn: '4 Slots Left',
+        statusBn: '৪টি স্লট বাকি',
+        img: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'cup-2',
+        nameEn: 'NIGHT FOOTBALL LEAGUE',
+        nameBn: 'নাইট ফুটবল লিগ',
+        teamsEn: '12 Teams Floodlit League',
+        teamsBn: '১২টি টিম ফ্লাডলাইট লিগ',
+        deadlineEn: 'Reg. Deadline: Dec 02, 2026',
+        deadlineBn: 'শেষ তারিখ: ০২ ডিসেম্বর, ২০২৬',
+        matchDateEn: 'Kickoff: Dec 05–12, 2026',
+        matchDateBn: 'ম্যাচ: ০৫–১২ ডিসেম্বর, ২০২৬',
+        entryFee: '৳3,000',
+        prizePool: '৳30,000',
+        statusEn: 'Registration Open',
+        statusBn: 'রেজিস্ট্রেশন চলছে',
+        img: 'https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=900&q=80'
+      },
+      {
+        id: 'cup-3',
+        nameEn: 'CORPORATE FOOTBALL CHALLENGE',
+        nameBn: 'কর্পোরেট ফুটবল চ্যালেঞ্জ',
+        teamsEn: '8 Corporate Teams Executive Cup',
+        teamsBn: '৮টি কর্পোরেট টিম কাপ',
+        deadlineEn: 'Reg. Deadline: Dec 10, 2026',
+        deadlineBn: 'শেষ তারিখ: ১০ ডিসেম্বর, ২০২৬',
+        matchDateEn: 'Kickoff: Dec 18, 2026',
+        matchDateBn: 'ম্যাচ: ১৮ ডিসেম্বর, ২০২৬',
+        entryFee: '৳8,000',
+        prizePool: '৳80,000',
+        statusEn: '2 Slots Left',
+        statusBn: '২টি স্লট বাকি',
+        img: 'https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?auto=format&fit=crop&w=900&q=80'
+      }
+    ];
+
+    const PRICING_SESSIONS = [
+      {
+        nameEn: 'Morning Session',
+        nameBn: 'মর্নিং সেশন',
+        timeEn: '06:00 AM – 11:00 AM',
+        timeBn: 'সকাল ০৬:০০ – সকাল ১১:০০',
+        price: '৳1,500',
+        popular: false,
+        perksEn: ['Fresh Morning Turf Access', '2 FIFA Match Balls & Bibs', 'Changing Room & Shower', 'Filtered Drinking Water'],
+        perksBn: ['সকালের সতেজ টার্ফ স্লট', '২টি ফিফা ম্যাচ বল ও বিবস', 'চেঞ্জিং রুম ও শাওয়ার', 'বিশুদ্ধ খাবার পানি']
+      },
+      {
+        nameEn: 'Afternoon Session',
+        nameBn: 'আফটারনুন সেশন',
+        timeEn: '03:00 PM – 05:00 PM',
+        timeBn: 'বিকাল ০৩:০০ – বিকাল ০৫:০০',
+        price: '৳2,000',
+        popular: false,
+        perksEn: ['Ideal for Academy & Uni Teams', '2 FIFA Match Balls & Bibs', 'AC Lounge & Locker Access', 'First Aid & Referee Support'],
+        perksBn: ['একাডেমি ও ইউনিভার্সিটি টিমের জন্য', '২টি ফিফা ম্যাচ বল ও বিবস', 'এসি লাউঞ্জ ও লকার সুবিধা', 'ফার্স্ট এইড সাপোর্ট']
+      },
+      {
+        nameEn: 'Evening Session',
+        nameBn: 'ইভিনিং ফ্লাডলাইট সেশন',
+        timeEn: '05:00 PM – 10:00 PM (Night LED)',
+        timeBn: 'বিকাল ০৫:০০ – রাত ১০:০০ (ফ্লাডলাইট)',
+        price: '৳2,500',
+        popular: true,
+        perksEn: ['600-Lux Shadowless Floodlights', 'Prime Night Stadium Atmosphere', 'Digital Scoreboard & Dugout', 'Free Secured Parking'],
+        perksBn: ['৬০০-লাক্স শ্যাডোলেস এলইডি ফ্লাডলাইট', 'রাতের প্রাইম স্টেডিয়াম অভিজ্ঞতা', 'ডিজিটাল স্কোরবোর্ড ও ডাগআউট', 'ফ্রি সিকিউরড পার্কিং']
+      },
+      {
+        nameEn: 'Weekend Premium',
+        nameBn: 'উইকেন্ড প্রিমিয়াম',
+        timeEn: 'Fri & Sat All Prime Slots',
+        timeBn: 'শুক্র ও শনিবার প্রাইম স্লট',
+        price: '৳3,000',
+        popular: false,
+        perksEn: ['Priority Pro Turf Access', 'Full Floodlights & PA Sound', 'VIP Gallery & Refreshments', 'Dedicated Match Coordinator'],
+        perksBn: ['প্রো টার্ফ প্রায়োরিটি অ্যাক্সেস', 'ফুল ফ্লাডলাইট ও সাউন্ড সিস্টেম', 'ভিআইপি গ্যালারি ও রিফ্রেশমেন্ট', 'ডেডিকেটেড ম্যাচ কো-অর্ডিনেটর']
+      }
+    ];
+
+    const GALLERY_ITEMS = [
+      { cat: 'Turf Field', titleEn: 'FIFA Quality Pro 7v7 Main Arena', titleBn: 'ফিফা কোয়ালিটি প্রো ৭ বনাম ৭ মেইন টার্ফ', img: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=80' },
+      { cat: 'Night Matches', titleEn: 'Shadowless LED Evening Kickoff', titleBn: 'এলইডি ফ্লাডলাইটে রাতের ম্যাচ', img: 'https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=1000&q=80' },
+      { cat: 'Tournaments', titleEn: 'Arena Champions Cup Finals', titleBn: 'অ্যারেনা চ্যাম্পিয়নস কাপ ফাইনাল', img: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=80' },
+      { cat: 'Celebrations', titleEn: 'Winning Squad Trophy Celebration', titleBn: 'চ্যাম্পিয়ন দলের ট্রফি উদযাপন', img: 'https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?auto=format&fit=crop&w=1000&q=80' },
+      { cat: 'Stadium Lights', titleEn: '600-Lux High-Mast Stadium Lighting', titleBn: '৬০০-লাক্স হাই-মাস্ট স্টেডিয়াম লাইটিং', img: 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1000&q=80' },
+      { cat: 'Facility', titleEn: 'Pro Player Dugout & Changing Lounge', titleBn: 'প্রো প্লেয়ার ডাগআউট ও চেঞ্জিং লাউঞ্জ', img: 'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1000&q=80' }
+    ];
+
+    const TESTIMONIALS_DATA = [
+      {
+        initials: 'TR',
+        name: 'Tahmid Rahman',
+        team: 'Captain, Gulshan Spartans FC',
+        rating: '5.0 ★',
+        quoteEn: 'Excellent turf quality, amazing shadowless lighting, and a super smooth 10-second online booking experience. Easily the best turf in Dhaka!',
+        quoteBn: 'চমৎকার টার্ফ কোয়ালিটি, দুর্দান্ত ফ্লাডলাইট এবং মাত্র ১০ সেকেন্ডে অনলাইন বুকিং অভিজ্ঞতা। নিঃসন্দেহে ঢাকার সেরা ফুটবল টার্ফ!'
+      },
+      {
+        initials: 'SN',
+        name: 'Shafqat Nabil',
+        team: 'Sports Lead, TechCorp Bangladesh',
+        rating: '5.0 ★',
+        quoteEn: 'We hosted our 8-team Corporate Football Challenge at ARENA 360 Pro Turf. From digital scoring to VIP lounge refreshments, everything was world-class.',
+        quoteBn: 'আমরা ARENA 360 প্রো টার্ফে আমাদের ৮-টিমের কর্পোরেট ফুটবল টুর্নামেন্ট আয়োজন করেছি। ডিজিটাল স্কোরিং থেকে ভিআইপি লাউঞ্জ—সবকিছুই ছিল বিশ্বমানের।'
+      },
+      {
+        initials: 'AK',
+        name: 'Arman Kabir',
+        team: 'Striker, Uttara All-Stars',
+        rating: '4.9 ★',
+        quoteEn: 'The shock-absorbing pad underneath the turf makes a huge difference on the knees. Zero turf burns and true ball roll every single night.',
+        quoteBn: 'টার্ফের নিচের শক-প্যাড হাঁটুর ওপর কোনো বাড়তি চাপ ফেলে না। বলের রোলিং এবং গ্রিপ এক কথায় অসাধারণ।'
+      }
+    ];
+
+    const FAQS_DATA = [
+      {
+        qEn: '1. How can I book a turf?',
+        aEn: 'Use our Instant Turf Booking Console at the top of the page or the interactive Booking Calendar. Select your turf, date, time slot, and duration, then click "Book Now" to receive an instant digital match pass.',
+        qBn: '১. আমি কীভাবে একটি টার্ফ বুক করতে পারি?',
+        aBn: 'পেজের উপরের ইনস্ট্যান্ট বুকিং কনসোল অথবা বুকিং ক্যালেন্ডার থেকে আপনার পছন্দের টার্ফ, তারিখ ও সময় নির্বাচন করে "বুক করুন" বাটনে ক্লিক করলেই তাৎক্ষণিক ম্যাচ পাস পেয়ে যাবেন।'
+      },
+      {
+        qEn: '2. Can I book online?',
+        aEn: 'Yes! ARENA 360 features 24/7 real-time online slot selection and instant confirmation without needing to make phone calls.',
+        qBn: '২. আমি কি অনলাইনে বুক করতে পারব?',
+        aBn: 'হ্যাঁ! ARENA 360 ওয়েবসাইটের মাধ্যমে আপনি ২৪/৭ যেকোনো সময় অনলাইনে খালি স্লট দেখে তাৎক্ষণিক বুকিং সম্পন্ন করতে পারবেন।'
+      },
+      {
+        qEn: '3. What are the available time slots?',
+        aEn: 'We operate daily from 06:00 AM to 11:30 PM, with bookable morning slots (06:00 AM–11:00 AM) and afternoon/floodlit night slots (03:00 PM–10:00 PM).',
+        qBn: '৩. কোন কোন সময়ের স্লট বুক করা যায়?',
+        aBn: 'প্রতিদিন সকাল ০৬:০০টা থেকে রাত ১১:৩০টা পর্যন্ত আমাদের মাঠ খোলা থাকে। সকাল ০৬:০০–১১:০০ এবং বিকাল ০৩:০০–রাত ১০:০০ পর্যন্ত বুকিং স্লট রয়েছে।'
+      },
+      {
+        qEn: '4. Can I cancel my booking?',
+        aEn: 'Yes, you can reschedule or cancel your booking free of charge up to 24 hours prior to kickoff directly from your Customer Dashboard.',
+        qBn: '৪. আমি কি আমার বুকিং বাতিল বা পরিবর্তন করতে পারি?',
+        aBn: 'হ্যাঁ, ম্যাচ শুরুর অন্তত ২৪ ঘণ্টা আগে আপনার ড্যাশবোর্ড থেকে সম্পূর্ণ বিনামূল্যে বুকিং রিশিডিউল বা বাতিল করতে পারবেন।'
+      },
+      {
+        qEn: '5. How can I organize a tournament?',
+        aEn: 'You can register for an upcoming cup in our Tournament section or submit a custom corporate/university tournament request through our Contact Form or ARENA AI assistant.',
+        qBn: '৫. আমি কীভাবে একটি টুর্নামেন্ট আয়োজন করতে পারি?',
+        aBn: 'আমাদের টুর্নামেন্ট সেকশন থেকে সরাসরি রেজিস্ট্রেশন করতে পারেন অথবা কাস্টম টুর্নামেন্ট আয়োজনের জন্য কন্টাক্ট ফর্ম বা ARENA AI চ্যাটবটের সাহায্য নিতে পারেন।'
+      },
+      {
+        qEn: '6. Is football equipment available?',
+        aEn: 'Every booking includes 2 FIFA-standard match balls, clean team bibs, corner flags, and referee whistles free of charge.',
+        qBn: '৬. খেলার জন্য ফুটবল ও সরঞ্জাম কি দেওয়া হয়?',
+        aBn: 'প্রতিটি বুকিংয়ের সাথে ২টি ফিফা-মানের ম্যাচ বল, পরিষ্কার টিম বিবস এবং কর্নার ফ্ল্যাগ সম্পূর্ণ বিনামূল্যে দেওয়া হয়।'
+      },
+      {
+        qEn: '7. Do you have parking facilities?',
+        aEn: 'Yes, ARENA 360 provides dedicated, CCTV-monitored free parking for 60+ cars and motorcycles inside our complex.',
+        qBn: '৭. আপনাদের কি পার্কিং সুবিধা আছে?',
+        aBn: 'হ্যাঁ, আমাদের কমপ্লেক্সের ভেতরে ৬০টিরও বেশি গাড়ি ও বাইকের জন্য সিসিটিভি নিয়ন্ত্রিত ফ্রি পার্কিং সুবিধা রয়েছে।'
+      },
+      {
+        qEn: '8. Can I book multiple hours?',
+        aEn: 'Absolutely. You can select 1 Hour, 1.5 Hours, 2 Hours, or 3 Hours directly in the booking console with automatic price calculation.',
+        qBn: '৮. আমি কি একসাথে একাধিক ঘণ্টা বুক করতে পারব?',
+        aBn: 'অবশ্যই। বুকিং কনসোলে ১ ঘণ্টা, ১.৫ ঘণ্টা, ২ ঘণ্টা বা ৩ ঘণ্টা সিলেক্ট করলেই স্বয়ংক্রিয়ভাবে মোট ভাড়া দেখতে পাবেন।'
+      },
+      {
+        qEn: '9. What payment methods are supported?',
+        aEn: 'We accept bKash, Nagad, Rocket, Visa/Mastercard, corporate bank transfer, and cash at the venue desk.',
+        qBn: '৯. কোন কোন মাধ্যমে পেমেন্ট করা যায়?',
+        aBn: 'বিকাশ, নগদ, রকেট, ভিসা/মাস্টারকার্ড, ব্যাংক ট্রান্সফার এবং সরাসরি ভেন্যু ডেস্কে ক্যাশ পেমেন্ট গ্রহণ করা হয়।'
+      }
+    ];
+
+    /* --------------------------------------------------------------------------
+       3. APPLICATION STATE
+       -------------------------------------------------------------------------- */
+    const getTodayStr = () => {
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    };
+
+    let currentLang = 'en';
+    let calYear = new Date().getFullYear();
+    let calMonth = new Date().getMonth(); // calendar always opens on the current month
+    let selectedCalDate = getTodayStr();
+    let selectedCalTurf = 'main';
+    let selectedCalSlot = '06:00 PM – 07:00 PM';
+    let selectedCalDuration = 1;
+    let activeGalleryCat = 'All';
+    let currentLightboxIndex = 0;
+    let openFaqIndex = 0;
+    let activeDashTab = 'bookings';
+    let activeTournamentForModal = TOURNAMENTS_DATA[0];
+    let pendingBookingPayload = null;
+
+    // Customer Dashboard Simulated Bookings & Tournaments
+    let userBookings = [
+      {
+        id: 'A360-8841',
+        turfName: 'Arena 360 Main Turf (7v7)',
+        date: getTodayStr(),
+        slot: '07:00 PM – 08:00 PM',
+        duration: '1 Hour',
+        team: 'Dhaka United FC',
+        price: 2500,
+        payment: 'bKash Instant Pay',
+        status: 'CONFIRMED'
+      },
+      {
+        id: 'A360-8790',
+        turfName: 'Arena 360 Pro Turf (8v8)',
+        date: '2026-11-14',
+        slot: '08:00 PM – 09:00 PM',
+        duration: '2 Hours',
+        team: 'Dhaka United FC',
+        price: 6000,
+        payment: 'Visa / Mastercard',
+        status: 'UPCOMING'
+      }
+    ];
+
+    let userTournaments = [
+      {
+        id: 'CUP-501',
+        cupName: 'ARENA CHAMPIONS CUP',
+        teamName: 'Dhaka United FC',
+        captain: 'Zayan Rahman',
+        entryFee: '৳5,000',
+        prizePool: '৳50,000',
+        status: 'REGISTERED'
+      }
+    ];
+
+    let aiMessages = [
+      {
+        role: 'ai',
+        text: 'Welcome to ARENA 360! ⚽ I am ARENA AI, your smart football booking assistant. Ask me about evening turf availability, hourly prices (৳), or tournament registration!'
+      }
+    ];
+
+    /* --------------------------------------------------------------------------
+       4. LANGUAGE SWITCHING ENGINE
+       -------------------------------------------------------------------------- */
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'bn' : 'en';
+      const enPill = document.getElementById('langEnPill');
+      const bnPill = document.getElementById('langBnPill');
+      if (currentLang === 'en') {
+        enPill.className = 'px-1.5 py-0.5 rounded bg-[#B7FF3C] text-[#080B10] font-extrabold';
+        bnPill.className = 'px-1.5 py-0.5 rounded text-[#A8B0BC]';
+      } else {
+        bnPill.className = 'px-1.5 py-0.5 rounded bg-[#B7FF3C] text-[#080B10] font-extrabold';
+        enPill.className = 'px-1.5 py-0.5 rounded text-[#A8B0BC]';
+      }
+      applyTranslations();
+    }
+
+    function applyTranslations() {
+      const dict = I18N[currentLang];
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+      renderTurfSection();
+      renderCalendar();
+      renderCalendarSlots();
+      renderTournamentsSection();
+      renderPricingSection();
+      renderGallerySection();
+      renderDashboardContent();
+      renderTestimonialsSection();
+      renderFaqSection();
+    }
+
+    /* --------------------------------------------------------------------------
+       5. QUICK BOOKING CONSOLE & CONFIRMATION MODAL
+       -------------------------------------------------------------------------- */
+    function getTurfById(id) {
+      return TURFS_DATA.find((t) => t.id === id) || TURFS_DATA[0];
+    }
+
+    function updateQuickBookingPrice() {
+      const turfId = document.getElementById('qbTurf').value;
+      const duration = parseFloat(document.getElementById('qbDuration').value || '1');
+      const turf = getTurfById(turfId);
+      const total = Math.round(turf.price * duration);
+      document.getElementById('qbPriceDisplay').textContent = `৳${total.toLocaleString()}`;
+    }
+
+    function quickSelectHeroSlot(slotStr) {
+      document.getElementById('qbSlot').value = slotStr;
+      selectedCalSlot = slotStr;
+      updateQuickBookingPrice();
+      renderCalendarSlots();
+      document.getElementById('quick-booking').scrollIntoView({ behavior: 'smooth' });
+      openInfoToast(`Selected prime slot: ${slotStr} (৳2,500/hr). Click "Book Now" to lock it!`);
+    }
+
+    function handleQuickBookSubmit(e) {
+      e.preventDefault();
+      const turfId = document.getElementById('qbTurf').value;
+      const turf = getTurfById(turfId);
+      const date = document.getElementById('qbDate').value || getTodayStr();
+      const slot = document.getElementById('qbSlot').value;
+      const durationVal = parseFloat(document.getElementById('qbDuration').value || '1');
+      const players = document.getElementById('qbPlayers').value;
+      const total = Math.round(turf.price * durationVal);
+
+      openBookingModal({
+        turfId: turf.id,
+        turfName: currentLang === 'en' ? turf.nameEn : turf.nameBn,
+        date,
+        slot,
+        duration: `${durationVal} ${durationVal === 1 ? 'Hour' : 'Hours'}`,
+        players,
+        price: total
+      });
+    }
+
+    function openBookingModal(payload) {
+      pendingBookingPayload = payload;
+      const summaryEl = document.getElementById('bookingModalSummary');
+      summaryEl.innerHTML = `
+        <div class="flex justify-between"><span class="text-[#A8B0BC]">Selected Turf:</span><span class="font-extrabold text-[#B7FF3C]">${payload.turfName}</span></div>
+        <div class="flex justify-between"><span class="text-[#A8B0BC]">Match Date:</span><span class="font-bold text-white">${payload.date}</span></div>
+        <div class="flex justify-between"><span class="text-[#A8B0BC]">Time Slot:</span><span class="font-bold text-white">${payload.slot}</span></div>
+        <div class="flex justify-between"><span class="text-[#A8B0BC]">Duration & Format:</span><span class="font-bold text-white">${payload.duration} • ${payload.players || 'Standard Squad'}</span></div>
+        <div class="flex justify-between pt-2 border-t border-white/10"><span class="text-[#A8B0BC]">Total Amount:</span><span class="font-display text-lg font-extrabold text-[#43F58C]">৳${payload.price.toLocaleString()} BDT</span></div>
+      `;
+      const modal = document.getElementById('bookingModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmFinalBooking(e) {
+      e.preventDefault();
+      if (!pendingBookingPayload) return;
+      const captain = document.getElementById('bmCaptainName').value.trim() || 'Zayan Rahman';
+      const team = document.getElementById('bmTeam').value.trim() || 'Dhaka United FC';
+      const payment = document.getElementById('bmPayment').value;
+      const refId = `A360-${Math.floor(1000 + Math.random() * 9000)}`;
+
+      userBookings.unshift({
+        id: refId,
+        turfName: pendingBookingPayload.turfName,
+        date: pendingBookingPayload.date,
+        slot: pendingBookingPayload.slot,
+        duration: pendingBookingPayload.duration,
+        team,
+        price: pendingBookingPayload.price,
+        payment,
+        status: 'CONFIRMED'
+      });
+
+      document.getElementById('headerBookingCount').textContent = userBookings.length;
+      document.getElementById('dashCountBookings').textContent = userBookings.length;
+      closeBookingModal();
+      renderCalendarSlots();
+      renderDashboardContent();
+      openInfoToast(`Booking Confirmed! Pass #${refId} for ${pendingBookingPayload.turfName} (${pendingBookingPayload.slot}) added to My Dashboard.`);
+    }
+
+    /* --------------------------------------------------------------------------
+       6. OUR TURF SECTION & TURF DETAILS MODAL
+       -------------------------------------------------------------------------- */
+    function renderTurfSection() {
+      const grid = document.getElementById('turfCardsGrid');
+      grid.innerHTML = TURFS_DATA.map((t) => {
+        const name = currentLang === 'en' ? t.nameEn : t.nameBn;
+        const type = currentLang === 'en' ? t.typeEn : t.typeBn;
+        const cap = currentLang === 'en' ? t.capacityEn : t.capacityBn;
+        const status = currentLang === 'en' ? t.statusEn : t.statusBn;
+        const desc = currentLang === 'en' ? t.descEn : t.descBn;
+        const viewBtn = currentLang === 'en' ? 'View Details' : 'বিস্তারিত দেখুন';
+        const bookBtn = currentLang === 'en' ? 'Book Now' : 'বুক করুন';
+
+        return `
+          <div class="glass-card glass-card-interactive rounded-3xl overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative h-56 overflow-hidden">
+                <img src="${t.img}" alt="${name}" onerror="this.src='https://placehold.co/800x500/101722/B7FF3C?text=ARENA+360'" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#080B10] via-transparent to-transparent"></div>
+                <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-[#080B10]/80 border border-[#43F58C]/50 text-[11px] font-extrabold text-[#43F58C]">● ${status}</span>
+                <span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-[#B7FF3C] text-[#080B10] text-xs font-black">৳${t.price.toLocaleString()}/hr</span>
+              </div>
+
+              <div class="p-6">
+                <div class="text-xs font-bold text-[#B7FF3C] uppercase tracking-wider">${type}</div>
+                <h3 class="font-display text-2xl font-extrabold text-white mt-1 mb-2">${name}</h3>
+                <p class="text-xs text-[#A8B0BC] leading-relaxed mb-4">${desc}</p>
+
+                <div class="grid grid-cols-2 gap-2.5 p-3 rounded-2xl bg-white/[0.04] border border-white/10 text-xs mb-4">
+                  <div>
+                    <div class="text-[10px] text-[#A8B0BC]">DIMENSIONS</div>
+                    <div class="font-extrabold text-white">${t.dimensions}</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-[#A8B0BC]">CAPACITY</div>
+                    <div class="font-extrabold text-white">${cap}</div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 mb-2">
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[11px] text-[#A8B0BC]">💡 Floodlights</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[11px] text-[#A8B0BC]">👕 Changing Room</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[11px] text-[#A8B0BC]">🚗 Free Parking</span>
+                  <span class="px-2.5 py-1 rounded-lg bg-white/5 text-[11px] text-[#A8B0BC]">⚽ Balls & Bibs</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 pb-6 pt-2 grid grid-cols-2 gap-3">
+              <button type="button" onclick="openTurfDetailModal('${t.id}')" class="btn-glass py-3 rounded-xl text-xs font-extrabold cursor-pointer">${viewBtn}</button>
+              <button type="button" onclick="selectTurfAndBook('${t.id}')" class="btn-neon py-3 rounded-xl text-xs font-extrabold cursor-pointer">${bookBtn}</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const amGrid = document.getElementById('amenitiesGrid');
+      amGrid.innerHTML = AMENITIES_LIST.map((a) => `
+        <div class="p-3 rounded-2xl bg-white/[0.04] border border-white/10 text-center hover:border-[#B7FF3C]/50 transition-all">
+          <div class="text-xl mb-1">${a.icon}</div>
+          <div class="text-[11px] font-bold text-white">${currentLang === 'en' ? a.en : a.bn}</div>
+        </div>
+      `).join('');
+    }
+
+    function openTurfDetailModal(turfId) {
+      const t = getTurfById(turfId);
+      const name = currentLang === 'en' ? t.nameEn : t.nameBn;
+      const type = currentLang === 'en' ? t.typeEn : t.typeBn;
+      const desc = currentLang === 'en' ? t.descEn : t.descBn;
+
+      document.getElementById('turfDetailContent').innerHTML = `
+        <span class="px-2.5 py-1 rounded-full bg-[#B7FF3C]/20 text-[#B7FF3C] text-[10px] font-extrabold uppercase">${type}</span>
+        <h3 class="font-display text-2xl font-extrabold text-white mt-1 mb-3">${name}</h3>
+        <img src="${t.img}" alt="${name}" class="w-full h-48 object-cover rounded-2xl mb-4 border border-white/15" />
+        <p class="text-xs sm:text-sm text-[#A8B0BC] leading-relaxed mb-4">${desc}</p>
+        <div class="grid grid-cols-3 gap-2.5 p-3.5 rounded-2xl bg-[#101722] border border-white/15 text-xs mb-5">
+          <div><div class="text-[#A8B0BC]">Size</div><div class="font-extrabold text-white">${t.dimensions}</div></div>
+          <div><div class="text-[#A8B0BC]">Format</div><div class="font-extrabold text-white">${currentLang === 'en' ? t.capacityEn : t.capacityBn}</div></div>
+          <div><div class="text-[#A8B0BC]">Rate</div><div class="font-extrabold text-[#B7FF3C]">৳${t.price.toLocaleString()}/hr</div></div>
+        </div>
+        <button type="button" onclick="closeTurfDetailModal(); selectTurfAndBook('${t.id}');" class="btn-neon w-full py-3.5 rounded-xl text-sm font-extrabold cursor-pointer">
+          Book ${name} Now (৳${t.price.toLocaleString()}/hr)
+        </button>
+      `;
+      const modal = document.getElementById('turfDetailModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeTurfDetailModal() {
+      const modal = document.getElementById('turfDetailModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function selectTurfAndBook(turfId) {
+      document.getElementById('qbTurf').value = turfId;
+      document.getElementById('calTurfSelect').value = turfId;
+      selectedCalTurf = turfId;
+      updateQuickBookingPrice();
+      renderCalendarSlots();
+      const turf = getTurfById(turfId);
+      openBookingModal({
+        turfId: turf.id,
+        turfName: currentLang === 'en' ? turf.nameEn : turf.nameBn,
+        date: selectedCalDate,
+        slot: selectedCalSlot,
+        duration: `${selectedCalDuration} ${selectedCalDuration === 1 ? 'Hour' : 'Hours'}`,
+        players: currentLang === 'en' ? turf.capacityEn : turf.capacityBn,
+        price: Math.round(turf.price * selectedCalDuration)
+      });
+    }
+
+    /* --------------------------------------------------------------------------
+       7. INTERACTIVE MONTHLY CALENDAR & AVAILABILITY ENGINE
+       -------------------------------------------------------------------------- */
+    const MONTH_NAMES_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const MONTH_NAMES_BN = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+
+    function changeCalendarMonth(delta) {
+      calMonth += delta;
+      if (calMonth > 11) {
+        calMonth = 0;
+        calYear++;
+      } else if (calMonth < 0) {
+        calMonth = 11;
+        calYear--;
+      }
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      const titleEl = document.getElementById('calendarMonthTitle');
+      const monthName = currentLang === 'en' ? MONTH_NAMES_EN[calMonth] : MONTH_NAMES_BN[calMonth];
+      titleEl.textContent = `${monthName} ${calYear}`;
+
+      const firstDay = new Date(calYear, calMonth, 1).getDay();
+      const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+      const grid = document.getElementById('calendarDaysGrid');
+      let html = '';
+
+      for (let i = 0; i < firstDay; i++) {
+        html += `<div class="h-10"></div>`;
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const mm = String(calMonth + 1).padStart(2, '0');
+        const dd = String(day).padStart(2, '0');
+        const dateIso = `${calYear}-${mm}-${dd}`;
+        const isSelected = dateIso === selectedCalDate;
+        const isPast = dateIso < getTodayStr();
+
+        // Dot color is derived from the same slot data shown on the right, so both always agree
+        const bookedCount = TIME_SLOTS_LIST.filter((s, i) => getSlotSimulatedStatus(dateIso, s, i) === 'BOOKED').length;
+        let dotColor = 'bg-[#43F58C]';
+        if (bookedCount >= 6) dotColor = 'bg-rose-500';
+        else if (bookedCount >= 3) dotColor = 'bg-amber-400';
+
+        if (isPast) {
+          html += `
+            <div class="h-11 rounded-xl flex items-center justify-center text-xs font-bold text-white/25 border border-transparent" aria-disabled="true">${day}</div>
+          `;
+          continue;
+        }
+
+        html += `
+          <button type="button" onclick="selectCalendarDate('${dateIso}')" class="h-11 rounded-xl flex flex-col items-center justify-center text-xs font-bold border transition-all cursor-pointer ${
+            isSelected
+              ? 'bg-[#B7FF3C] text-[#080B10] border-[#B7FF3C] font-black shadow-[0_0_15px_rgba(183,255,60,0.5)]'
+              : 'bg-white/[0.04] hover:bg-white/10 text-white border-white/10'
+          }">
+            <span>${day}</span>
+            <span class="w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-[#080B10]' : dotColor} mt-0.5"></span>
+          </button>
+        `;
+      }
+      grid.innerHTML = html;
+    }
+
+    function ensureSelectedSlotAvailable() {
+      const idx = TIME_SLOTS_LIST.indexOf(selectedCalSlot);
+      if (idx !== -1 && getSlotSimulatedStatus(selectedCalDate, selectedCalSlot, idx) !== 'BOOKED') return;
+      const firstOpen = TIME_SLOTS_LIST.find((s, i) => getSlotSimulatedStatus(selectedCalDate, s, i) !== 'BOOKED');
+      if (firstOpen) {
+        selectedCalSlot = firstOpen;
+        document.getElementById('qbSlot').value = firstOpen;
+      }
+    }
+
+    function selectCalendarDate(dateIso) {
+      selectedCalDate = dateIso;
+      document.getElementById('qbDate').value = dateIso;
+      ensureSelectedSlotAvailable();
+      renderCalendar();
+      renderCalendarSlots();
+    }
+
+    function handleCalendarTurfChange(turfId) {
+      selectedCalTurf = turfId;
+      document.getElementById('qbTurf').value = turfId;
+      updateQuickBookingPrice();
+      renderCalendarSlots();
+    }
+
+    function handleCalendarDurationChange(durVal) {
+      selectedCalDuration = parseFloat(durVal || '1');
+      document.getElementById('qbDuration').value = durVal;
+      updateQuickBookingPrice();
+      renderCalendarSlots();
+    }
+
+    function getSlotSimulatedStatus(dateIso, slotLabel, idx) {
+      const userBooked = userBookings.some((b) => b.date === dateIso && b.slot === slotLabel);
+      if (userBooked) return 'BOOKED';
+      // Deterministic demo data: each date gets its own busy-ness (1–7 booked slots)
+      const n = Number(dateIso.slice(8, 10)) + Number(dateIso.slice(5, 7)) * 13;
+      const busy = 1 + ((n * 3) % 7);
+      const seed = (n * 5 + idx * 7) % TIME_SLOTS_LIST.length;
+      if (seed < busy) return 'BOOKED';
+      if (seed < busy + 2) return 'LIMITED';
+      return 'AVAILABLE';
+    }
+
+    function renderCalendarSlots() {
+      const turf = getTurfById(selectedCalTurf);
+      const turfTitle = currentLang === 'en' ? turf.nameEn : turf.nameBn;
+      document.getElementById('calSelectedDateBanner').textContent = `${turfTitle} • ${selectedCalDate}`;
+
+      const slotsGrid = document.getElementById('calendarSlotsGrid');
+      slotsGrid.innerHTML = TIME_SLOTS_LIST.map((slot, idx) => {
+        const status = getSlotSimulatedStatus(selectedCalDate, slot, idx);
+        const isSelected = selectedCalSlot === slot && status !== 'BOOKED';
+
+        let cardStyle = 'bg-white/[0.04] hover:bg-white/10 border-white/15 text-white';
+        let badgeHtml = `<span class="px-2 py-0.5 rounded bg-[#43F58C]/20 text-[#43F58C] text-[10px] font-extrabold">${currentLang === 'en' ? 'AVAILABLE' : 'খালি'}</span>`;
+
+        if (status === 'BOOKED') {
+          cardStyle = 'bg-rose-950/30 border-rose-500/35 text-rose-200/70 opacity-75 cursor-not-allowed';
+          badgeHtml = `<span class="px-2 py-0.5 rounded bg-rose-500/30 text-rose-300 text-[10px] font-extrabold">${currentLang === 'en' ? 'BOOKED' : 'বুকড'}</span>`;
+        } else if (status === 'LIMITED') {
+          badgeHtml = `<span class="px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 text-[10px] font-extrabold">${currentLang === 'en' ? 'LIMITED' : 'সীমিত'}</span>`;
+        }
+
+        if (isSelected) {
+          cardStyle = 'bg-[#B7FF3C]/20 border-[#B7FF3C] text-white shadow-[0_0_20px_rgba(183,255,60,0.25)]';
+          badgeHtml = `<span class="px-2 py-0.5 rounded bg-[#B7FF3C] text-[#080B10] text-[10px] font-black">${currentLang === 'en' ? 'SELECTED' : 'সিলেক্টেড'}</span>`;
+        }
+
+        return `
+          <button type="button" onclick="pickCalendarSlot('${slot}', '${status}')" class="p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${cardStyle}">
+            <div class="flex items-center justify-between gap-1 mb-2">
+              <span class="text-[10px] font-bold text-[#A8B0BC]">SLOT ${String(idx + 1).padStart(2, '0')}</span>
+              ${badgeHtml}
+            </div>
+            <div class="text-xs sm:text-sm font-extrabold">${slot}</div>
+            <div class="text-[11px] text-[#A8B0BC] mt-1">৳${turf.price.toLocaleString()}/hr</div>
+          </button>
+        `;
+      }).join('');
+
+      const total = Math.round(turf.price * selectedCalDuration);
+      document.getElementById('calSummaryLine').textContent = `${turfTitle} • ${selectedCalSlot} (${selectedCalDuration} Hr)`;
+      document.getElementById('calTotalPrice').textContent = `৳${total.toLocaleString()}`;
+    }
+
+    function pickCalendarSlot(slot, status) {
+      if (status === 'BOOKED') {
+        openInfoToast(`Slot ${slot} on ${selectedCalDate} is already booked. Please choose an Available (Green) or Limited (Yellow) slot.`);
+        return;
+      }
+      selectedCalSlot = slot;
+      document.getElementById('qbSlot').value = slot;
+      renderCalendarSlots();
+    }
+
+    function openBookingModalFromCalendar() {
+      const turf = getTurfById(selectedCalTurf);
+      openBookingModal({
+        turfId: turf.id,
+        turfName: currentLang === 'en' ? turf.nameEn : turf.nameBn,
+        date: selectedCalDate,
+        slot: selectedCalSlot,
+        duration: `${selectedCalDuration} ${selectedCalDuration === 1 ? 'Hour' : 'Hours'}`,
+        players: currentLang === 'en' ? turf.capacityEn : turf.capacityBn,
+        price: Math.round(turf.price * selectedCalDuration)
+      });
+    }
+
+    /* --------------------------------------------------------------------------
+       8. TOURNAMENT MANAGEMENT SECTION & MODAL
+       -------------------------------------------------------------------------- */
+    function renderTournamentsSection() {
+      const grid = document.getElementById('tournamentCardsGrid');
+      grid.innerHTML = TOURNAMENTS_DATA.map((c) => {
+        const name = currentLang === 'en' ? c.nameEn : c.nameBn;
+        const teams = currentLang === 'en' ? c.teamsEn : c.teamsBn;
+        const deadline = currentLang === 'en' ? c.deadlineEn : c.deadlineBn;
+        const matchDate = currentLang === 'en' ? c.matchDateEn : c.matchDateBn;
+        const status = currentLang === 'en' ? c.statusEn : c.statusBn;
+        const regBtn = currentLang === 'en' ? 'Register Now →' : 'রেজিস্ট্রেশন করুন →';
+
+        return `
+          <div class="glass-card glass-card-interactive rounded-3xl overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img src="${c.img}" alt="${name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#080B10] via-[#080B10]/40 to-transparent"></div>
+                <span class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-[#B7FF3C] text-[#080B10] text-[10px] font-black uppercase">${status}</span>
+                <div class="absolute bottom-3 left-4 right-4">
+                  <span class="text-[11px] font-bold text-[#43F58C]">${teams}</span>
+                  <h3 class="font-display text-xl font-extrabold text-white">${name}</h3>
+                </div>
+              </div>
+
+              <div class="p-6 space-y-3">
+                <div class="text-xs text-[#A8B0BC] space-y-1">
+                  <div>📅 <strong class="text-white">${matchDate}</strong></div>
+                  <div>⏳ ${deadline}</div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 p-3.5 rounded-2xl bg-[#101722] border border-white/10">
+                  <div>
+                    <div class="text-[10px] text-[#A8B0BC] uppercase">ENTRY FEE</div>
+                    <div class="font-display text-lg font-extrabold text-white">${c.entryFee}</div>
+                  </div>
+                  <div>
+                    <div class="text-[10px] text-[#A8B0BC] uppercase">PRIZE POOL</div>
+                    <div class="font-display text-lg font-extrabold text-[#B7FF3C]">${c.prizePool}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 pb-6">
+              <button type="button" onclick="openTournamentModal('${c.id}')" class="btn-neon w-full py-3.5 rounded-xl text-xs sm:text-sm font-extrabold cursor-pointer">${regBtn}</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openTournamentModal(cupId) {
+      activeTournamentForModal = TOURNAMENTS_DATA.find((c) => c.id === cupId) || TOURNAMENTS_DATA[0];
+      document.getElementById('tournModalTitle').textContent = currentLang === 'en' ? activeTournamentForModal.nameEn : activeTournamentForModal.nameBn;
+      document.getElementById('tournModalMeta').textContent = `Entry Fee: ${activeTournamentForModal.entryFee} • Prize Pool: ${activeTournamentForModal.prizePool}`;
+      const modal = document.getElementById('tournamentModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeTournamentModal() {
+      const modal = document.getElementById('tournamentModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function submitTournamentRegistration(e) {
+      e.preventDefault();
+      const teamName = document.getElementById('tmTeamName').value.trim();
+      const captain = document.getElementById('tmCaptain').value.trim();
+      if (!teamName || !captain) return;
+
+      userTournaments.unshift({
+        id: `CUP-${Math.floor(100 + Math.random() * 900)}`,
+        cupName: currentLang === 'en' ? activeTournamentForModal.nameEn : activeTournamentForModal.nameBn,
+        teamName,
+        captain,
+        entryFee: activeTournamentForModal.entryFee,
+        prizePool: activeTournamentForModal.prizePool,
+        status: 'REGISTERED'
+      });
+
+      document.getElementById('dashCountTournaments').textContent = userTournaments.length;
+      document.getElementById('tmTeamName').value = '';
+      document.getElementById('tmCaptain').value = '';
+      document.getElementById('tmPhone').value = '';
+      document.getElementById('tmKit').value = '';
+      closeTournamentModal();
+      switchDashboardTab('tournaments');
+      openInfoToast(`Team "${teamName}" registered for ${activeTournamentForModal.nameEn}! Check the Tournaments tab in your Dashboard.`);
+    }
+
+    /* --------------------------------------------------------------------------
+       10. PRICING SECTION
+       -------------------------------------------------------------------------- */
+    function renderPricingSection() {
+      const grid = document.getElementById('pricingCardsGrid');
+      grid.innerHTML = PRICING_SESSIONS.map((s) => {
+        const name = currentLang === 'en' ? s.nameEn : s.nameBn;
+        const time = currentLang === 'en' ? s.timeEn : s.timeBn;
+        const perks = currentLang === 'en' ? s.perksEn : s.perksBn;
+        const btnTxt = currentLang === 'en' ? 'Book Session' : 'সেশন বুক করুন';
+
+        return `
+          <div class="glass-card glass-card-interactive rounded-3xl p-6 flex flex-col justify-between relative ${
+            s.popular ? 'border-2 border-[#B7FF3C] shadow-[0_0_35px_rgba(183,255,60,0.2)]' : ''
+          }">
+            <div>
+              ${
+                s.popular
+                  ? `<span class="inline-block px-3 py-1 rounded-full bg-[#B7FF3C] text-[#080B10] text-[10px] font-black uppercase mb-3">★ MOST POPULAR</span>`
+                  : `<span class="inline-block px-3 py-1 rounded-full bg-white/5 text-[#A8B0BC] text-[10px] font-bold uppercase mb-3">STANDARD RATE</span>`
+              }
+              <h3 class="font-display text-xl font-extrabold text-white">${name}</h3>
+              <p class="text-xs text-[#43F58C] font-semibold mt-0.5 mb-4">${time}</p>
+              <div class="flex items-baseline gap-1 pb-4 mb-4 border-b border-white/10">
+                <span class="font-display text-3xl sm:text-4xl font-extrabold text-white">${s.price}</span>
+                <span class="text-xs text-[#A8B0BC]">/ hour</span>
+              </div>
+              <ul class="space-y-2.5 text-xs text-[#A8B0BC] mb-6">
+                ${perks.map((p) => `<li class="flex items-center gap-2"><span class="text-[#B7FF3C] font-black">✓</span><span>${p}</span></li>`).join('')}
+              </ul>
+            </div>
+            <a href="#quick-booking" class="${s.popular ? 'btn-neon' : 'btn-glass'} w-full py-3 rounded-xl text-xs font-extrabold text-center block">${btnTxt}</a>
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* --------------------------------------------------------------------------
+       11. GALLERY SECTION & LIGHTBOX
+       -------------------------------------------------------------------------- */
+    function renderGallerySection() {
+      const cats = ['All', 'Turf Field', 'Night Matches', 'Tournaments', 'Celebrations', 'Stadium Lights', 'Facility'];
+      document.getElementById('galleryFilterBar').innerHTML = cats.map((c) => `
+        <button type="button" onclick="setGalleryCat('${c}')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold cursor-pointer transition-all ${
+          activeGalleryCat === c ? 'btn-neon' : 'btn-glass'
+        }">${c}</button>
+      `).join('');
+
+      const filtered = activeGalleryCat === 'All' ? GALLERY_ITEMS : GALLERY_ITEMS.filter((g) => g.cat === activeGalleryCat);
+      document.getElementById('galleryGrid').innerHTML = filtered.map((g) => {
+        const title = currentLang === 'en' ? g.titleEn : g.titleBn;
+        // Use the index in the full list so the lightbox opens the clicked photo even when a filter is active
+        const realIdx = GALLERY_ITEMS.indexOf(g);
+        return `
+          <div onclick="openLightbox(${realIdx})" class="group relative h-64 rounded-3xl overflow-hidden border border-white/15 cursor-pointer">
+            <img src="${g.img}" alt="${title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#080B10] via-transparent to-transparent opacity-90"></div>
+            <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+              <div>
+                <span class="px-2.5 py-0.5 rounded bg-[#B7FF3C]/20 border border-[#B7FF3C]/40 text-[10px] font-extrabold text-[#B7FF3C] uppercase">${g.cat}</span>
+                <h4 class="text-sm sm:text-base font-extrabold text-white mt-1">${title}</h4>
+              </div>
+              <span class="w-8 h-8 rounded-lg glass-pill flex items-center justify-center text-white group-hover:bg-[#B7FF3C] group-hover:text-[#080B10] transition-colors">⤢</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function setGalleryCat(cat) {
+      activeGalleryCat = cat;
+      renderGallerySection();
+    }
+
+    function openLightbox(idx) {
+      currentLightboxIndex = idx;
+      updateLightboxView();
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function updateLightboxView() {
+      const item = GALLERY_ITEMS[currentLightboxIndex] || GALLERY_ITEMS[0];
+      document.getElementById('lightboxImg').src = item.img;
+      document.getElementById('lightboxCat').textContent = item.cat;
+      document.getElementById('lightboxTitle').textContent = currentLang === 'en' ? item.titleEn : item.titleBn;
+    }
+
+    function stepLightbox(dir) {
+      currentLightboxIndex = (currentLightboxIndex + dir + GALLERY_ITEMS.length) % GALLERY_ITEMS.length;
+      updateLightboxView();
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    /* --------------------------------------------------------------------------
+       16. CUSTOMER DASHBOARD PREVIEW
+       -------------------------------------------------------------------------- */
+    function switchDashboardTab(tab) {
+      activeDashTab = tab;
+      ['bookings', 'tournaments', 'payments', 'profile'].forEach((t) => {
+        const btn = document.getElementById(`dashTab-${t}`);
+        if (btn) {
+          btn.className = t === tab
+            ? 'px-4 py-2 rounded-xl text-xs font-extrabold btn-neon cursor-pointer'
+            : 'px-4 py-2 rounded-xl text-xs font-bold btn-glass cursor-pointer';
+        }
+      });
+      renderDashboardContent();
+    }
+
+    function renderDashboardContent() {
+      const container = document.getElementById('dashboardContentArea');
+      if (activeDashTab === 'bookings') {
+        container.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-display text-lg font-extrabold text-white">My Turf Bookings &amp; Match Passes (${userBookings.length})</h3>
+            <span class="text-xs text-[#43F58C] font-bold">● Live Synced</span>
+          </div>
+          <div class="space-y-3">
+            ${userBookings.map((b) => `
+              <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-[#B7FF3C]/20 text-[#B7FF3C] text-[10px] font-black">${b.id}</span>
+                    <span class="px-2 py-0.5 rounded bg-[#43F58C]/20 text-[#43F58C] text-[10px] font-extrabold">${b.status}</span>
+                  </div>
+                  <h4 class="text-sm font-extrabold text-white mt-1">${b.turfName}</h4>
+                  <p class="text-xs text-[#A8B0BC]">${b.date} • ${b.slot} (${b.duration}) • Team: ${b.team}</p>
+                </div>
+                <div class="text-right">
+                  <div class="font-display text-lg font-extrabold text-[#B7FF3C]">৳${b.price.toLocaleString()}</div>
+                  <div class="text-[11px] text-[#A8B0BC]">${b.payment}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (activeDashTab === 'tournaments') {
+        container.innerHTML = `
+          <h3 class="font-display text-lg font-extrabold text-white mb-4">Registered Tournament Squads (${userTournaments.length})</h3>
+          <div class="space-y-3">
+            ${userTournaments.map((c) => `
+              <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <span class="px-2 py-0.5 rounded bg-[#B7FF3C] text-[#080B10] text-[10px] font-black">${c.status}</span>
+                  <h4 class="text-sm font-extrabold text-white mt-1">${c.cupName}</h4>
+                  <p class="text-xs text-[#A8B0BC]">Squad: ${c.teamName} • Captain: ${c.captain}</p>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-[#A8B0BC]">Prize Pool: <strong class="text-[#43F58C]">${c.prizePool}</strong></div>
+                  <div class="text-sm font-extrabold text-white">Entry: ${c.entryFee}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (activeDashTab === 'payments') {
+        container.innerHTML = `
+          <h3 class="font-display text-lg font-extrabold text-white mb-4">Recent Payment History</h3>
+          <div class="space-y-2.5 text-xs">
+            ${userBookings.map((b) => `
+              <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-white">${b.id} — ${b.turfName}</div>
+                  <div class="text-[#A8B0BC]">${b.payment} • ${b.date}</div>
+                </div>
+                <span class="font-extrabold text-[#43F58C]">Paid ৳${b.price.toLocaleString()}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <h3 class="font-display text-lg font-extrabold text-white mb-4">Player &amp; Club Profile Settings</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10"><div class="text-[#A8B0BC]">Captain Name</div><div class="font-bold text-white text-sm mt-0.5">Zayan Rahman</div></div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10"><div class="text-[#A8B0BC]">Registered Squad</div><div class="font-bold text-white text-sm mt-0.5">Dhaka United FC (7v7 / 8v8)</div></div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10"><div class="text-[#A8B0BC]">Preferred Turf</div><div class="font-bold text-[#B7FF3C] text-sm mt-0.5">Arena 360 Main Turf</div></div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10"><div class="text-[#A8B0BC]">Loyalty Status</div><div class="font-bold text-[#43F58C] text-sm mt-0.5">10% Club Rebate Active</div></div>
+          </div>
+        `;
+      }
+    }
+
+    function openAuthOrDashboardModal() {
+      document.getElementById('dashboard-preview').scrollIntoView({ behavior: 'smooth' });
+      openInfoToast('Switched to your interactive Player & Captain Dashboard below.');
+    }
+
+    /* --------------------------------------------------------------------------
+       13. TESTIMONIALS & 14. FAQ ACCORDION
+       -------------------------------------------------------------------------- */
+    function renderTestimonialsSection() {
+      document.getElementById('testimonialsGrid').innerHTML = TESTIMONIALS_DATA.map((r) => `
+        <div class="glass-card glass-card-interactive rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-1 rounded-full bg-[#B7FF3C]/15 text-[#B7FF3C] text-xs font-extrabold">${r.rating}</span>
+              <span class="text-xs text-[#43F58C] font-semibold">✔ Verified Captain</span>
+            </div>
+            <p class="text-xs sm:text-sm text-white/90 italic leading-relaxed mb-6">"${currentLang === 'en' ? r.quoteEn : r.quoteBn}"</p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#B7FF3C] to-[#43F58C] text-[#080B10] font-extrabold text-xs flex items-center justify-center">${r.initials}</div>
+            <div>
+              <div class="text-sm font-extrabold text-white">${r.name}</div>
+              <div class="text-[11px] text-[#A8B0BC]">${r.team}</div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderFaqSection() {
+      document.getElementById('faqAccordionList').innerHTML = FAQS_DATA.map((f, idx) => {
+        const isOpen = idx === openFaqIndex;
+        const q = currentLang === 'en' ? f.qEn : f.qBn;
+        const a = currentLang === 'en' ? f.aEn : f.aBn;
+        return `
+          <div class="glass-card rounded-2xl overflow-hidden border ${isOpen ? 'border-[#B7FF3C]/50' : 'border-white/10'}">
+            <button type="button" onclick="toggleFaqItem(${idx})" class="w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-white/[0.03]">
+              <span class="text-sm sm:text-base font-extrabold text-white">${q}</span>
+              <span class="w-7 h-7 rounded-lg glass-pill flex items-center justify-center text-[#B7FF3C] font-black shrink-0">${isOpen ? '−' : '+'}</span>
+            </button>
+            ${isOpen ? `<div class="px-5 pb-5 pt-1 text-xs sm:text-sm text-[#A8B0BC] leading-relaxed border-t border-white/10">${a}</div>` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleFaqItem(idx) {
+      openFaqIndex = openFaqIndex === idx ? -1 : idx;
+      renderFaqSection();
+    }
+
+    /* --------------------------------------------------------------------------
+       15. CONTACT FORM SUBMISSION
+       -------------------------------------------------------------------------- */
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('cName').value.trim();
+      const subject = document.getElementById('cSubject').value.trim();
+      const banner = document.getElementById('contactSuccessBanner');
+      banner.textContent = currentLang === 'en'
+        ? `Thank you, ${name}! Your message regarding "${subject}" has been received by the ARENA 360 Operations Desk. We will call you shortly.`
+        : `ধন্যবাদ, ${name}! "${subject}" বিষয়ে আপনার বার্তাটি ARENA 360 ডেস্কে জমা হয়েছে। আমরা শীঘ্রই যোগাযোগ করব।`;
+      banner.classList.remove('hidden');
+      document.getElementById('contactForm').reset();
+    }
+
+    /* --------------------------------------------------------------------------
+       9. FLOATING AI SMART BOOKING ASSISTANT ("ARENA AI")
+       -------------------------------------------------------------------------- */
+    function toggleAiAssistant(open) {
+      const launcher = document.getElementById('aiLauncher');
+      const win = document.getElementById('aiChatWindow');
+      if (open) {
+        launcher.classList.add('hidden');
+        win.classList.remove('hidden');
+        win.classList.add('flex');
+        renderAiMessages();
+      } else {
+        win.classList.add('hidden');
+        win.classList.remove('flex');
+        launcher.classList.remove('hidden');
+      }
+    }
+
+    function getSimulatedAiReply(userText) {
+      const q = userText.toLowerCase();
+      if (currentLang === 'bn') {
+        if (q.includes('price') || q.includes('cost') || q.includes('ভাড়া') || q.includes('দাম')) {
+          return 'আমাদের মেইন টার্ফ (৭ বনাম ৭) ২,৫০০ টাকা/ঘণ্টা, মিনি টার্ফ (৫ বনাম ৫) ১,৮০০ টাকা/ঘণ্টা এবং প্রো টার্ফ (৮ বনাম ৮) ৩,০০০ টাকা/ঘণ্টা।';
+        }
+        if (q.includes('tournament') || q.includes('cup') || q.includes('টুর্নামেন্ট')) {
+          return 'আমাদের ৩টি টুর্নামেন্টে রেজিস্ট্রেশন চলছে: ARENA CHAMPIONS CUP (প্রাইজপুল ৫০,০০০ টাকা), NIGHT FOOTBALL LEAGUE (৩০,০০০ টাকা) এবং CORPORATE CHALLENGE (৮০,০০০ টাকা)।';
+        }
+        return 'হ্যালো! আগামীকাল ও আজ সন্ধ্যায় আমাদের কয়েকটি প্রাইম স্লট (০৬:০০ PM – ১০:০০ PM) খালি আছে। আপনি কোন টার্ফটি বুক করতে চান?';
+      }
+
+      if (q.includes('tomorrow') || q.includes('book') || q.includes('slot') || q.includes('availability')) {
+        return 'Sure! We have several evening slots available (06:00 PM, 07:00 PM, and 08:00 PM). Which turf would you prefer — Main Turf (৳2,500/hr), Mini Turf (৳1,800/hr), or Pro Turf (৳3,000/hr)?';
+      }
+      if (q.includes('main turf') || q.includes('price') || q.includes('cost') || q.includes('how much') || q.includes('pricing')) {
+        return 'Our Main Turf (7-a-side) is available at ৳2,500 per hour, Mini Turf (5-a-side) is ৳1,800/hr, and Pro Turf (8-a-side) is ৳3,000/hr. Morning sessions start at just ৳1,500/hr!';
+      }
+      if (q.includes('tournament') || q.includes('cup') || q.includes('league')) {
+        return 'You can register directly in our Tournament section! The Arena Champions Cup (৳50,000 Prize Pool), Night Football League (৳30,000), and Corporate Challenge (৳80,000) are open now.';
+      }
+      if (q.includes('contact') || q.includes('support') || q.includes('phone')) {
+        return 'You can reach our Operations Desk daily (6 AM – 11:30 PM) at +880 1700-360360 or WhatsApp us directly from the Contact section.';
+      }
+      return 'Sure! We have prime floodlit slots open tonight. You can lock your slot in 10 seconds using the Quick Booking Console or ask me about turf prices and tournaments!';
+    }
+
+    function triggerAiQuickAction(actionText) {
+      pushUserChatMessage(actionText);
+    }
+
+    function handleAiChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('aiUserInput');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      pushUserChatMessage(text);
+    }
+
+    function pushUserChatMessage(text) {
+      aiMessages.push({ role: 'user', text });
+      renderAiMessages();
+      const typing = document.getElementById('aiTypingBox');
+      typing.classList.remove('hidden');
+      typing.classList.add('flex');
+
+      setTimeout(() => {
+        typing.classList.add('hidden');
+        typing.classList.remove('flex');
+        const reply = getSimulatedAiReply(text);
+        aiMessages.push({ role: 'ai', text: reply });
+        renderAiMessages();
+      }, 650);
+    }
+
+    function renderAiMessages() {
+      const box = document.getElementById('aiChatMessages');
+      box.innerHTML = aiMessages.map((m) => `
+        <div class="flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}">
+          <div class="max-w-[85%] p-3 rounded-2xl text-xs leading-relaxed ${
+            m.role === 'user'
+              ? 'bg-[#B7FF3C] text-[#080B10] font-bold rounded-br-none'
+              : 'bg-white/10 border border-white/15 text-white rounded-bl-none'
+          }">${m.text}</div>
+        </div>
+      `).join('');
+      box.scrollTop = box.scrollHeight;
+    }
+
+    /* --------------------------------------------------------------------------
+       18. MOBILE MENU, TOASTS & SCROLL EFFECTS
+       -------------------------------------------------------------------------- */
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileMenuDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    let toastTimer = null;
+    function openInfoToast(msg) {
+      const toast = document.getElementById('infoToast');
+      document.getElementById('infoToastText').textContent = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(closeInfoToast, 5000);
+    }
+
+    function closeInfoToast() {
+      const toast = document.getElementById('infoToast');
+      toast.classList.add('hidden');
+      toast.classList.remove('flex');
+    }
+
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      const topBtn = document.getElementById('backToTopBtn');
+      if (window.scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      if (window.scrollY > 500) {
+        topBtn.classList.remove('hidden');
+        topBtn.classList.add('flex');
+      } else {
+        topBtn.classList.add('hidden');
+        topBtn.classList.remove('flex');
+      }
+    });
+
+    /* --------------------------------------------------------------------------
+       INITIALIZATION ON DOM CONTENT LOADED
+       -------------------------------------------------------------------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      const today = getTodayStr();
+      const qbDate = document.getElementById('qbDate');
+      qbDate.value = today;
+      qbDate.min = today; // no booking in the past
+      selectedCalDate = today;
+      ensureSelectedSlotAvailable();
+      updateQuickBookingPrice();
+      renderTurfSection();
+      renderCalendar();
+      renderCalendarSlots();
+      renderTournamentsSection();
+      renderPricingSection();
+      renderGallerySection();
+      renderDashboardContent();
+      renderTestimonialsSection();
+      renderFaqSection();
+      setupModalDismiss();
+      setupActiveNavHighlight();
+    });
+
+    /* Close any open modal with Esc or by clicking the dark backdrop */
+    function setupModalDismiss() {
+      const closers = {
+        bookingModal: closeBookingModal,
+        turfDetailModal: closeTurfDetailModal,
+        tournamentModal: closeTournamentModal,
+        lightboxModal: closeLightbox
+      };
+      Object.entries(closers).forEach(([id, close]) => {
+        document.getElementById(id).addEventListener('click', (e) => {
+          if (e.target.id === id) close();
+        });
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        Object.values(closers).forEach((close) => close());
+        toggleAiAssistant(false);
+      });
+    }
+
+    /* Highlight the nav link of the section currently on screen */
+    function setupActiveNavHighlight() {
+      const links = document.querySelectorAll('nav[aria-label="Primary Navigation"] .arena-nav-link');
+      const ids = [...links].map((a) => a.getAttribute('href').slice(1));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`));
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    }
+  </script>
+</body>
+</html>
